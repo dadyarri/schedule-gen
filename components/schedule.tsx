@@ -1,4 +1,5 @@
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import jsonata from "jsonata";
 
 type Props = {
   schedule: string;
@@ -14,10 +15,9 @@ type DayWeekItem = {
 type TimetableItem = {
   timetableId: number;
   week: number;
-}
+};
 
 const Schedule = ({ schedule }: Props) => {
-
   const dayNumberToName = (day: number) => {
     switch (day) {
       case 1:
@@ -69,18 +69,63 @@ const Schedule = ({ schedule }: Props) => {
     });
 
     return days.sort();
-  }
+  };
 
   const getIdsOfTimetable = (dayWeekItems: DayWeekItem[], day: number) => {
     const timetables: TimetableItem[] = [];
     dayWeekItems.forEach((item: DayWeekItem) => {
       if (item.day === day) {
-        timetables.push({timetableId: item.timetableId, week: item.week});
+        timetables.push({ timetableId: item.timetableId, week: item.week });
       }
-    })
+    });
 
     return timetables;
-  }
+  };
+
+  const getLessonName = (schedule: object, timetableId: number) => {
+    return jsonata(
+      `timetableList@$T.lessonList@$L[$T.lessonId = $L.id][$T.id=${timetableId}]{"lesson": $L.name}`
+    ).evaluate(schedule);
+  };
+
+  const getRoomName = (schedule: object, timetableId: number) => {
+    return jsonata(
+      `timetableList@$T.roomList@$R[$T.roomId = $R.id][$T.id=${timetableId}]{"room": $R.name}`
+    ).evaluate(schedule);
+  };
+
+  const getTypeName = (schedule: object, timetableId: number) => {
+    return jsonata(
+      `timetableList@$T.typeList@$TP[$T.typeId = $TP.id][$T.id=${timetableId}]{"type": $TP.name}`
+    ).evaluate(schedule);
+  };
+
+  const getTeacherName = (schedule: object, timetableId: number) => {
+    return jsonata(
+      `timetableList@$T.teacherList@$TC[$T.teacherId = $TC.id][$T.id=${timetableId}]{"teacher": $TC.name}`
+    ).evaluate(schedule);
+  };
+
+  const getTime = (schedule: object, timetableId: number) => {
+    return jsonata(
+      `timetableList@$T.timeList@$TM[$T.timeId = $TM.id][$T.id=${timetableId}]{"time": $TM.start & " - " & $TM.end}`
+    ).evaluate(schedule);
+  };
+
+  const buildTimetable = (
+    schedule: object,
+    timetableId: number,
+    week: number
+  ) => {
+    return {
+      lesson: getLessonName(schedule, timetableId).lesson,
+      room: getRoomName(schedule, timetableId).room,
+      type: getTypeName(schedule, timetableId).type,
+      teacher: getTeacherName(schedule, timetableId).teacher,
+      time: getTime(schedule, timetableId).time,
+      week: week,
+    }
+  };
 
   if (!schedule) {
     console.error("какая-то хуйня!");
@@ -89,15 +134,17 @@ const Schedule = ({ schedule }: Props) => {
     const json = JSON.parse(schedule);
 
     const days: number[] = getDistinctDays(json.dayWeekList);
-    console.log(getIdsOfTimetable(json.dayWeekList, 2));
 
     return (
       <Box mt={10}>
         <Tabs variant={"solid-rounded"}>
           <TabList>
-            {days.map((day: number) => (
-            <Tab key={day}>{dayNumberToShortName(day)}</Tab>
-            ), [])}
+            {days.map(
+              (day: number) => (
+                <Tab key={day}>{dayNumberToShortName(day)}</Tab>
+              ),
+              []
+            )}
           </TabList>
 
           <TabPanels>
