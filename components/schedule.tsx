@@ -129,35 +129,18 @@ const Schedule = ({ schedule }: Props) => {
           </TabList>
 
           <TabPanels>
-            <TabPanel>
-              <ScheduleCard
-                lesson={tt.lesson}
-                room={tt.room}
-                type={tt.type}
-                teacher={tt.teacher}
-                time={tt.time}
-              />
-              <ScheduleCard
-                lesson={tt.lesson}
-                room={tt.room}
-                type={tt.type}
-                teacher={tt.teacher}
-                time={tt.time}
-              />
-              <ScheduleCard
-                lesson={tt.lesson}
-                room={tt.room}
-                type={tt.type}
-                teacher={tt.teacher}
-                time={tt.time}
-              />
-            </TabPanel>
-            <TabPanel>вторник</TabPanel>
-            <TabPanel>среда</TabPanel>
-            <TabPanel>четверг</TabPanel>
-            <TabPanel>пятница</TabPanel>
-            <TabPanel>суббота</TabPanel>
-            <TabPanel>воскресенье</TabPanel>
+            {days.map((day: number) => {
+              const timetableIds = getIdsOfTimetable(json.dayWeekList, day);
+              return (
+                <TabPanel>
+                  {timetableIds.map((tt: TimetableItem) => (
+                    <ScheduleCard
+                      {...buildTimetable(json, tt.timetableId, tt.week)}
+                    />
+                  ))}
+                </TabPanel>
+              );
+            })}
           </TabPanels>
         </Tabs>
       </Box>
