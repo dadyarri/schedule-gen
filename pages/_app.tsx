@@ -1,8 +1,17 @@
-import "../styles/globals.css";
-import type { AppProps } from "next/app";
+import type {AppProps} from "next/app";
+import {ChakraProvider} from "@chakra-ui/react";
+import theme from "../libs/theme";
+import {DevSupport} from "@react-buddy/ide-toolbox";
+import {ComponentPreviews, useInitial} from "../dev";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+function Website({Component, pageProps}: AppProps) {
+  return <ChakraProvider theme={theme}>
+    <DevSupport ComponentPreviews={ComponentPreviews}
+                useInitialHook={useInitial}
+    >
+      <Component {...pageProps} />
+    </DevSupport>
+  </ChakraProvider>;
 }
 
-export default MyApp;
+export default Website;
