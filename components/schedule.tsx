@@ -114,7 +114,6 @@ const Schedule = ({ schedule }: Props) => {
     const json = JSON.parse(schedule);
 
     const days: number[] = getDistinctDays(json.dayWeekList);
-    const tt = buildTimetable(json, 21, 2);
 
     return (
       <Box mt={10}>

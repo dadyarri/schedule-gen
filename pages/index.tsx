@@ -45,7 +45,7 @@ const Home: NextPage = () => {
     return encodeURIComponent(str);
   }
 
-  function decodeData(str: string) {
+  function _decodeData(str: string) {
     return decodeURIComponent(str);
   }
 
