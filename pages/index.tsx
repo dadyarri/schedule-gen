@@ -14,7 +14,7 @@ import {
   useDisclosure
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { AiOutlineUpload } from "react-icons/ai";
+import { AiOutlineUpload, AiOutlineClear } from "react-icons/ai";
 import React, { FormEvent } from "react";
 import { BlobReader, TextWriter, ZipReader } from "@zip.js/zip.js";
 import Ajv from "ajv";
@@ -94,13 +94,22 @@ const Home: NextPage = () => {
     }
   };
 
+  const clearSchedule = async () => {
+    await router.push(`/`, undefined, {
+      shallow: true
+    });
+  }
+
   return (
     <Layout title={"Расписание"}>
       <Heading as={"h2"} alignSelf={"center"}>
         Генератор расписания
       </Heading>
       {schedule ? (
-        <Schedule schedule={schedule} />
+        <>
+          <Schedule schedule={schedule} />
+          <Button leftIcon={<AiOutlineClear/>} colorScheme={'blue'} onClick={clearSchedule}>Очистить</Button>
+        </>
       ) : (
         <Box mt={10}>
           <form method={"post"} onSubmit={uploadSchedule}>
