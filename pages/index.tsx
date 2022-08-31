@@ -98,7 +98,7 @@ const Home: NextPage = () => {
     await router.push(`/`, undefined, {
       shallow: true
     });
-  }
+  };
 
   return (
     <Layout title={"Расписание"}>
@@ -108,7 +108,13 @@ const Home: NextPage = () => {
       {schedule ? (
         <>
           <Schedule schedule={schedule} />
-          <Button leftIcon={<AiOutlineClear/>} colorScheme={'blue'} onClick={clearSchedule}>Очистить</Button>
+          <Button
+            leftIcon={<AiOutlineClear />}
+            colorScheme={"blue"}
+            onClick={clearSchedule}
+          >
+            Очистить
+          </Button>
         </>
       ) : (
         <Box mt={10}>
