@@ -17,7 +17,7 @@ specifiers:
   '@types/react-dom': 18.0.6
   '@typescript-eslint/eslint-plugin': ^5.36.1
   '@typescript-eslint/parser': ^5.36.1
-  adm-zip: ^0.5.9
+  '@zip.js/zip.js': ^2.6.21
   eslint: 8.22.0
   eslint-config-next: 12.2.5
   framer-motion: ^7.2.1
@@ -37,7 +37,7 @@ dependencies:
   '@chakra-ui/theme-tools': 2.0.11_ixdfg65nzjkaw36n6br7hh33cu
   '@emotion/react': 11.10.4_v3lqmnp7jnla5x5eji467wk4ae
   '@emotion/styled': 11.10.4_qzbwge7tbhs2ordiiw7o6wknfm
-  adm-zip: 0.5.9
+  '@zip.js/zip.js': 2.6.21
   framer-motion: 7.2.1_biqbaboplfbrettd7655fr4n2y
   next: 12.2.5_rlaikcoslzwwtqyk7brpdzej5y
   react: 18.2.0
@@ -1782,6 +1782,11 @@ packages:
   /@zag-js/focus-visible/0.1.0:
     resolution: {integrity: sha512-PeaBcTmdZWcFf7n1aM+oiOdZc+sy14qi0emPIeUuGMTjbP0xLGrZu43kdpHnWSXy7/r4Ubp/vlg50MCV8+9Isg==}
 
+  /@zip.js/zip.js/2.6.21:
+    resolution: {integrity: sha512-q93C7qRiHaqV993mZgU2AjfcbTYi/bMCGsH280vMJ3DEwxvK89DT2FoK3M6HHnYLh7eAzuNpbuISzFqgEUItcA==}
+    engines: {deno: '>=1.0.0', node: '>=16.5.0'}
+    dev: false
+
   /acorn-jsx/5.3.2_acorn@8.8.0:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -1795,11 +1800,6 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
-
-  /adm-zip/0.5.9:
-    resolution: {integrity: sha512-s+3fXLkeeLjZ2kLjCBwQufpI5fuN+kIGBxu6530nVQZGVol0d7Y/M88/xw9HGGUcJjKf8LutN3VPRUBq6N7Ajg==}
-    engines: {node: '>=6.0'}
-    dev: false
 
   /ajv/6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
