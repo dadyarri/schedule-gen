@@ -8,14 +8,16 @@ import theme from "../libs/theme";
 export default class Document extends NextDocument {
   render() {
     return (
-        <Html lang={"ru"}>
-          <Head />
-          <body>
-          <ColorModeScript initialColorMode={theme["config"].initialColorMode} />
+      <Html lang={"ru"}>
+        <Head />
+        <body>
+          <ColorModeScript
+            initialColorMode={theme["config"].initialColorMode}
+          />
           <Main />
           <NextScript />
-          </body>
-        </Html>
+        </body>
+      </Html>
     );
   }
 }
