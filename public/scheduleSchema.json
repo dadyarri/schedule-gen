@@ -1,0 +1,2231 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "attendList": {
+      "type": "array",
+      "items": {}
+    },
+    "dateList": {
+      "type": "array",
+      "items": {}
+    },
+    "dayWeekList": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "day": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "timetableId": {
+              "type": "integer"
+            },
+            "week": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "day",
+            "id",
+            "timetableId",
+            "week"
+          ]
+        }
+      ]
+    },
+    "examGroupList": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        }
+      ]
+    },
+    "examList": {
+      "type": "array",
+      "items": {}
+    },
+    "gradeList": {
+      "type": "array",
+      "items": {}
+    },
+    "gradeStatisticList": {
+      "type": "array",
+      "items": {}
+    },
+    "homeworkList": {
+      "type": "array",
+      "items": {}
+    },
+    "imageList": {
+      "type": "array",
+      "items": {}
+    },
+    "lessonList": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "color",
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "color",
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "color",
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "color",
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "color",
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "color",
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "color",
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "color",
+            "id",
+            "name"
+          ]
+        }
+      ]
+    },
+    "noteList": {
+      "type": "array",
+      "items": {}
+    },
+    "roomList": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        }
+      ]
+    },
+    "teacherList": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "email",
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "description",
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "email",
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "email",
+            "id",
+            "name",
+            "phone"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "email",
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "email",
+            "id",
+            "name",
+            "phone"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "email",
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        }
+      ]
+    },
+    "timeList": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "end": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "number": {
+              "type": "integer"
+            },
+            "start": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "end",
+            "id",
+            "number",
+            "start"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "end": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "number": {
+              "type": "integer"
+            },
+            "start": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "end",
+            "id",
+            "number",
+            "start"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "end": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "number": {
+              "type": "integer"
+            },
+            "start": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "end",
+            "id",
+            "number",
+            "start"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "end": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "number": {
+              "type": "integer"
+            },
+            "start": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "end",
+            "id",
+            "number",
+            "start"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "end": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "number": {
+              "type": "integer"
+            },
+            "start": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "end",
+            "id",
+            "number",
+            "start"
+          ]
+        }
+      ]
+    },
+    "timetableList": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "lessonId": {
+              "type": "integer"
+            },
+            "roomId": {
+              "type": "integer"
+            },
+            "teacherId": {
+              "type": "integer"
+            },
+            "timeId": {
+              "type": "integer"
+            },
+            "typeId": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "lessonId",
+            "roomId",
+            "teacherId",
+            "timeId",
+            "typeId"
+          ]
+        }
+      ]
+    },
+    "typeList": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        }
+      ]
+    },
+    "version": {
+      "type": "integer"
+    },
+    "weekendList": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "name"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dateEnd": {
+              "type": "string"
+            },
+            "dateStart": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "dateEnd",
+            "dateStart",
+            "id",
+            "name"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "dayWeekList",
+    "examGroupList",
+    "examList",
+    "lessonList",
+    "roomList",
+    "teacherList",
+    "timeList",
+    "timetableList",
+    "typeList",
+    "version"
+  ]
+}
