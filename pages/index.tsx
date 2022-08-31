@@ -1,4 +1,4 @@
-import type {NextPage} from "next";
+import type { NextPage } from "next";
 import Layout from "../components/layout";
 import {
   Alert,
@@ -13,10 +13,11 @@ import {
   Text,
   useDisclosure
 } from "@chakra-ui/react";
-import {useRouter} from "next/router";
-import {AiOutlineUpload} from "react-icons/ai";
-import React, {FormEvent} from "react";
-import {BlobReader, TextWriter, ZipReader} from "@zip.js/zip.js";
+import { useRouter } from "next/router";
+import { AiOutlineUpload } from "react-icons/ai";
+import React, { FormEvent } from "react";
+import { BlobReader, TextWriter, ZipReader } from "@zip.js/zip.js";
+import Ajv from "ajv";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -33,20 +34,35 @@ const Home: NextPage = () => {
     onOpen: onMoreThanOneFileOpen
   } = useDisclosure({ defaultIsOpen: false });
 
+  const {
+    isOpen: isInvalidJsonVisible,
+    onClose: onInvalidJsonClose,
+    onOpen: onInvalidJsonOpen
+  } = useDisclosure({ defaultIsOpen: false });
+
   function b64EncodeUnicode(str: string) {
-    return window.btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+    return window.btoa(
+      encodeURIComponent(str).replace(
+        /%([0-9A-F]{2})/g,
         function toSolidBytes(match, p1) {
           // @ts-ignore
-          return String.fromCharCode('0x' + p1);
-        }));
+          return String.fromCharCode("0x" + p1);
+        }
+      )
+    );
   }
 
   function b64DecodeUnicode(str: string) {
-    return decodeURIComponent(window.atob(str).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
+    return decodeURIComponent(
+      window
+        .atob(str)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
   }
-
 
   const uploadSchedule = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -77,9 +93,19 @@ const Home: NextPage = () => {
       const jsonString = JSON.stringify(json);
       const jsonBase64 = b64EncodeUnicode(jsonString);
 
-      await router.push(`/?schedule=${jsonBase64}`, undefined, {
-        shallow: true
-      });
+      const ajv = new Ajv();
+      const schema = JSON.parse(
+        await (await fetch("/scheduleSchema.json")).text()
+      );
+      const valid = ajv.validate(schema, json);
+
+      if (!valid) {
+        return onInvalidJsonOpen();
+      } else {
+        await router.push(`/?schedule=${jsonBase64}`, undefined, {
+          shallow: true
+        });
+      }
     }
   };
 
@@ -149,6 +175,25 @@ const Home: NextPage = () => {
             right={-1}
             top={-1}
             onClick={onMoreThanOneFileClose}
+          />
+        </Alert>
+      )}
+
+      {isInvalidJsonVisible && (
+        <Alert
+          status="error"
+          mt={4}
+          id={"invalid-json-error-alert"}
+          variant={"left-accent"}
+        >
+          <AlertIcon />
+          <AlertTitle>Некорректный JSON!</AlertTitle>
+          <CloseButton
+            alignSelf="flex-start"
+            position="relative"
+            right={-1}
+            top={-1}
+            onClick={onInvalidJsonClose}
           />
         </Alert>
       )}
