@@ -11,9 +11,12 @@ type DayWeekItem = {
   week: number;
 };
 
+type TimetableItem = {
+  timetableId: number;
+  week: number;
+}
+
 const Schedule = ({ schedule }: Props) => {
-  console.log(schedule);
-  console.log(typeof schedule);
 
   const dayNumberToName = (day: number) => {
     switch (day) {
@@ -36,23 +39,37 @@ const Schedule = ({ schedule }: Props) => {
     }
   };
 
+  const getDistinctDays = (dayWeekItems: DayWeekItem[]) => {
+    const days: number[] = [];
+    dayWeekItems.forEach((item: DayWeekItem) => {
+      if (!days.includes(item.day)) {
+        days.push(item.day);
+      }
+    });
+
+    return days.sort();
+  }
+
+  const getIdsOfTimetable = (dayWeekItems: DayWeekItem[], day: number) => {
+    const timetables: TimetableItem[] = [];
+    console.log(dayWeekItems);
+    dayWeekItems.forEach((item: DayWeekItem) => {
+      if (item.day === day) {
+        timetables.push({timetableId: item.timetableId, week: item.week});
+      }
+    })
+
+    return timetables;
+  }
+
   if (!schedule) {
     console.error("какая-то хуйня!");
     return <></>;
   } else {
     const json = JSON.parse(schedule);
 
-    const days: number[] = [];
-
-    console.log(
-      json.dayWeekList.forEach((item: DayWeekItem) => {
-        if (!days.includes(item.day)) {
-          days.push(item.day);
-        }
-      })
-    );
-
-    days.sort()
+    const days: number[] = getDistinctDays(json.dayWeekList);
+    console.log(getIdsOfTimetable(json.dayWeekList, 2));
 
     return (
       <Box mt={10}>
