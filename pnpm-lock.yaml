@@ -22,6 +22,7 @@ specifiers:
   eslint: 8.22.0
   eslint-config-next: 12.2.5
   framer-motion: ^7.2.1
+  jsonata: ^1.8.6
   next: 12.2.5
   prettier: ^2.7.1
   react: 18.2.0
@@ -41,6 +42,7 @@ dependencies:
   '@zip.js/zip.js': 2.6.21
   ajv: 8.11.0
   framer-motion: 7.2.1_biqbaboplfbrettd7655fr4n2y
+  jsonata: 1.8.6
   next: 12.2.5_rlaikcoslzwwtqyk7brpdzej5y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -2917,6 +2919,11 @@ packages:
     resolution: {integrity: sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==}
     engines: {node: '>=6'}
     hasBin: true
+
+  /jsonata/1.8.6:
+    resolution: {integrity: sha512-ZH2TPYdNP2JecOl/HvrH47Xc+9imibEMQ4YqKy/F/FrM+2a6vfbGxeCX23dB9Fr6uvGwv+ghf1KxWB3iZk09wA==}
+    engines: {node: '>= 8'}
+    dev: false
 
   /jsx-ast-utils/3.3.3:
     resolution: {integrity: sha512-fYQHZTZ8jSfmWZ0iyzfwiU4WDX4HpHbMCZ3gPlWYiCl3BoeOTsqKBqnTVfH2rYT7eP5c3sVbeSPHnnJOaTrWiw==}
