@@ -22,7 +22,7 @@ import Schedule from "../components/schedule";
 
 const Home: NextPage = () => {
   const router = useRouter();
-  const schedule = decodeData(router.query["schedule"] as string);
+  const schedule = router.query["schedule"] as string;
   const {
     isOpen: isMissingFileVisible,
     onClose: onMissingFileClose,
@@ -100,7 +100,7 @@ const Home: NextPage = () => {
         Генератор расписания
       </Heading>
       {schedule ? (
-        <Schedule/>
+        <Schedule schedule={schedule} />
       ) : (
         <Box mt={10}>
           <form method={"post"} onSubmit={uploadSchedule}>
