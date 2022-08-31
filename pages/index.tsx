@@ -18,6 +18,7 @@ import { AiOutlineUpload } from "react-icons/ai";
 import React, { FormEvent } from "react";
 import { BlobReader, TextWriter, ZipReader } from "@zip.js/zip.js";
 import Ajv from "ajv";
+import Schedule from "../components/schedule";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -99,7 +100,7 @@ const Home: NextPage = () => {
         Генератор расписания
       </Heading>
       {schedule ? (
-        <Text>{schedule}</Text>
+        <Schedule/>
       ) : (
         <Box mt={10}>
           <form method={"post"} onSubmit={uploadSchedule}>
