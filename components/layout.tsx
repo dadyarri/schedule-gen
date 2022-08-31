@@ -31,7 +31,7 @@ const Layout = ({ children, title }: Props) => {
             <title>{t}</title>
           </Head>
         )}
-        <Container mt={5}>{children}</Container>
+        <Container mt={5} width={"xl"}>{children}</Container>
       </>
     </motion.article>
   );
