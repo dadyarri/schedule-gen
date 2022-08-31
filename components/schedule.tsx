@@ -39,6 +39,27 @@ const Schedule = ({ schedule }: Props) => {
     }
   };
 
+  const dayNumberToShortName = (day: number) => {
+    switch (day) {
+      case 1:
+        return "ВС";
+      case 2:
+        return "ПН";
+      case 3:
+        return "ВТ";
+      case 4:
+        return "СР";
+      case 5:
+        return "ЧТ";
+      case 6:
+        return "ПТ";
+      case 7:
+        return "СБ";
+      default:
+        return "";
+    }
+  };
+
   const getDistinctDays = (dayWeekItems: DayWeekItem[]) => {
     const days: number[] = [];
     dayWeekItems.forEach((item: DayWeekItem) => {
@@ -52,7 +73,6 @@ const Schedule = ({ schedule }: Props) => {
 
   const getIdsOfTimetable = (dayWeekItems: DayWeekItem[], day: number) => {
     const timetables: TimetableItem[] = [];
-    console.log(dayWeekItems);
     dayWeekItems.forEach((item: DayWeekItem) => {
       if (item.day === day) {
         timetables.push({timetableId: item.timetableId, week: item.week});
@@ -76,7 +96,7 @@ const Schedule = ({ schedule }: Props) => {
         <Tabs variant={"solid-rounded"}>
           <TabList>
             {days.map((day: number) => (
-            <Tab key={day}>{dayNumberToName(day)}</Tab>
+            <Tab key={day}>{dayNumberToShortName(day)}</Tab>
             ), [])}
           </TabList>
 
