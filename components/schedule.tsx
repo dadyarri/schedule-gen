@@ -123,8 +123,8 @@ const Schedule = ({ schedule }: Props) => {
       type: getTypeName(schedule, timetableId).type,
       teacher: getTeacherName(schedule, timetableId).teacher,
       time: getTime(schedule, timetableId).time,
-      week: week,
-    }
+      week: week
+    };
   };
 
   if (!schedule) {
