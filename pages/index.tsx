@@ -21,7 +21,7 @@ import Ajv from "ajv";
 
 const Home: NextPage = () => {
   const router = useRouter();
-  const schedule = router.query["schedule"];
+  const schedule = decodeData(router.query["schedule"] as string);
   const {
     isOpen: isMissingFileVisible,
     onClose: onMissingFileClose,
@@ -40,28 +40,12 @@ const Home: NextPage = () => {
     onOpen: onInvalidJsonOpen
   } = useDisclosure({ defaultIsOpen: false });
 
-  function b64EncodeUnicode(str: string) {
-    return window.btoa(
-      encodeURIComponent(str).replace(
-        /%([0-9A-F]{2})/g,
-        function toSolidBytes(match, p1) {
-          // @ts-ignore
-          return String.fromCharCode("0x" + p1);
-        }
-      )
-    );
+  function encodeData(str: string) {
+    return encodeURIComponent(str);
   }
 
-  function b64DecodeUnicode(str: string) {
-    return decodeURIComponent(
-      window
-        .atob(str)
-        .split("")
-        .map(function (c) {
-          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-        })
-        .join("")
-    );
+  function decodeData(str: string) {
+    return decodeURIComponent(str);
   }
 
   const uploadSchedule = async (e: FormEvent<HTMLFormElement>) => {
@@ -91,7 +75,7 @@ const Home: NextPage = () => {
       });
 
       const jsonString = JSON.stringify(json);
-      const jsonBase64 = b64EncodeUnicode(jsonString);
+      const jsonBase64 = encodeData(jsonString);
 
       const ajv = new Ajv();
       const schema = JSON.parse(
