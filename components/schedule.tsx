@@ -1,5 +1,6 @@
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import jsonata from "jsonata";
+import ScheduleCard from "./schedule-card";
 
 type Props = {
   schedule: string;
@@ -134,6 +135,7 @@ const Schedule = ({ schedule }: Props) => {
     const json = JSON.parse(schedule);
 
     const days: number[] = getDistinctDays(json.dayWeekList);
+    const tt = buildTimetable(json, 21, 2);
 
     return (
       <Box mt={10}>
@@ -148,7 +150,29 @@ const Schedule = ({ schedule }: Props) => {
           </TabList>
 
           <TabPanels>
-            <TabPanel>понедельник</TabPanel>
+            <TabPanel>
+              <ScheduleCard
+                lesson={tt.lesson}
+                room={tt.room}
+                type={tt.type}
+                teacher={tt.teacher}
+                time={tt.time}
+              />
+              <ScheduleCard
+                lesson={tt.lesson}
+                room={tt.room}
+                type={tt.type}
+                teacher={tt.teacher}
+                time={tt.time}
+              />
+              <ScheduleCard
+                lesson={tt.lesson}
+                room={tt.room}
+                type={tt.type}
+                teacher={tt.teacher}
+                time={tt.time}
+              />
+            </TabPanel>
             <TabPanel>вторник</TabPanel>
             <TabPanel>среда</TabPanel>
             <TabPanel>четверг</TabPanel>
