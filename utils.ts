@@ -1,4 +1,4 @@
-import {DayWeekItem, TimeTable, TimetableItem} from "./libs/types";
+import { DayWeekItem, TimeTable, TimetableItem } from "./libs/types";
 import jsonata from "jsonata";
 
 const dayNumberToShortName = (day: number) => {
@@ -44,46 +44,62 @@ const getDistinctWeeks = (dayWeekItems: TimetableItem[]) => {
   return weeks.sort();
 };
 
-const getLessonName = (schedule: object, timetableId: number): {lesson: string} => {
+const getLessonName = (
+  schedule: object,
+  timetableId: number
+): { lesson: string } => {
   return jsonata(
-      `timetableList@$T.lessonList@$L[$T.lessonId = $L.id][$T.id=${timetableId}]{"lesson": $L.name}`
+    `timetableList@$T.lessonList@$L[$T.lessonId = $L.id][$T.id=${timetableId}]{"lesson": $L.name}`
   ).evaluate(schedule);
 };
 
-const getRoomName = (schedule: object, timetableId: number): {room: string} => {
+const getRoomName = (
+  schedule: object,
+  timetableId: number
+): { room: string } => {
   return jsonata(
-      `timetableList@$T.roomList@$R[$T.roomId = $R.id][$T.id=${timetableId}]{"room": $R.name}`
+    `timetableList@$T.roomList@$R[$T.roomId = $R.id][$T.id=${timetableId}]{"room": $R.name}`
   ).evaluate(schedule);
 };
 
-const getTypeName = (schedule: object, timetableId: number): {type: string} => {
+const getTypeName = (
+  schedule: object,
+  timetableId: number
+): { type: string } => {
   return jsonata(
-      `timetableList@$T.typeList@$TP[$T.typeId = $TP.id][$T.id=${timetableId}]{"type": $TP.name}`
+    `timetableList@$T.typeList@$TP[$T.typeId = $TP.id][$T.id=${timetableId}]{"type": $TP.name}`
   ).evaluate(schedule);
 };
 
-const getTeacherName = (schedule: object, timetableId: number): {teacher: string} => {
+const getTeacherName = (
+  schedule: object,
+  timetableId: number
+): { teacher: string } => {
   return jsonata(
-      `timetableList@$T.teacherList@$TC[$T.teacherId = $TC.id][$T.id=${timetableId}]{"teacher": $TC.name}`
+    `timetableList@$T.teacherList@$TC[$T.teacherId = $TC.id][$T.id=${timetableId}]{"teacher": $TC.name}`
   ).evaluate(schedule);
 };
 
-const getTime = (schedule: object, timetableId: number): {time: string} => {
+const getTime = (schedule: object, timetableId: number): { time: string } => {
   return jsonata(
-      `timetableList@$T.timeList@$TM[$T.timeId = $TM.id][$T.id=${timetableId}]{"time": $TM.start & " - " & $TM.end}`
+    `timetableList@$T.timeList@$TM[$T.timeId = $TM.id][$T.id=${timetableId}]{"time": $TM.start & " - " & $TM.end}`
   ).evaluate(schedule);
 };
 
-const getTimetableByDayAndWeek = (schedule: object, day: number, week: number): number[] => {
-  return jsonata(
-      `dayWeekList[day=${day}][week=${week}].timetableId`
-  ).evaluate(schedule);
-}
+const getTimetableByDayAndWeek = (
+  schedule: object,
+  day: number,
+  week: number
+): number[] => {
+  return jsonata(`dayWeekList[day=${day}][week=${week}].timetableId`).evaluate(
+    schedule
+  );
+};
 
 const buildTimetable = (
-    schedule: object,
-    timetableId: number,
-    week: number
+  schedule: object,
+  timetableId: number,
+  week: number
 ): TimeTable => {
   return {
     lesson: getLessonName(schedule, timetableId).lesson,
@@ -95,4 +111,10 @@ const buildTimetable = (
   };
 };
 
-export { dayNumberToShortName, getDistinctDays, getDistinctWeeks, buildTimetable, getTimetableByDayAndWeek };
+export {
+  dayNumberToShortName,
+  getDistinctDays,
+  getDistinctWeeks,
+  buildTimetable,
+  getTimetableByDayAndWeek
+};

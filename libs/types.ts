@@ -21,4 +21,4 @@ export type TimetableItem = {
 
 export type ParsedSchedule = {
   dayWeekList: DayWeekItem[];
-}
+};

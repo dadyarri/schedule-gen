@@ -1,10 +1,18 @@
-import type {NextPage} from "next";
+import type { NextPage } from "next";
 import Layout from "../components/layout";
-import {Box, Button, FormControl, Heading, Input, Text, useToast} from "@chakra-ui/react";
-import {useRouter} from "next/router";
-import {AiOutlineClear, AiOutlineUpload} from "react-icons/ai";
-import React, {FormEvent} from "react";
-import {BlobReader, TextWriter, ZipReader} from "@zip.js/zip.js";
+import {
+  Box,
+  Button,
+  FormControl,
+  Heading,
+  Input,
+  Text,
+  useToast
+} from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import { AiOutlineClear, AiOutlineUpload } from "react-icons/ai";
+import React, { FormEvent } from "react";
+import { BlobReader, TextWriter, ZipReader } from "@zip.js/zip.js";
 import Ajv from "ajv";
 import Schedule from "../components/schedule";
 

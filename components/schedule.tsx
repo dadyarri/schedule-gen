@@ -1,4 +1,4 @@
-import {Box} from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import ScheduleDaysTab from "./schedule-days-tab";
 
 type Props = {
@@ -14,7 +14,7 @@ const Schedule = ({ schedule }: Props) => {
 
     return (
       <Box mt={10}>
-        <ScheduleDaysTab json={json}/>
+        <ScheduleDaysTab json={json} />
       </Box>
     );
   }
