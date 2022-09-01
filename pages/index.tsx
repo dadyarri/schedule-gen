@@ -41,6 +41,8 @@ const Home: NextPage = () => {
     onOpen: onInvalidJsonOpen
   } = useDisclosure({ defaultIsOpen: false });
 
+  const [ buttonIsLoading, setButtonIsLoading ] = React.useState(false);
+
   function encodeData(str: string) {
     return encodeURIComponent(str);
   }
@@ -57,9 +59,12 @@ const Home: NextPage = () => {
     // if yes, base64 the json and push it to url
     // if no, show error
 
+    setButtonIsLoading(true);
+
     const fileInput = document.getElementById("file-input") as HTMLInputElement;
 
     if (fileInput.files?.length === 0 || !fileInput.files) {
+      setButtonIsLoading(false);
       return onMissingFileOpen();
     } else {
       const file = fileInput.files[0] as File;
@@ -67,6 +72,7 @@ const Home: NextPage = () => {
       const entries = await new ZipReader(new BlobReader(file)).getEntries({});
 
       if (entries.length !== 1) {
+        setButtonIsLoading(false);
         return onMoreThanOneFileOpen();
       }
 
@@ -85,8 +91,10 @@ const Home: NextPage = () => {
       const valid = ajv.validate(schema, json);
 
       if (!valid) {
+        setButtonIsLoading(false);
         return onInvalidJsonOpen();
       } else {
+        setButtonIsLoading(false);
         await router.push(`/?schedule=${jsonBase64}`, undefined, {
           shallow: true
         });
@@ -131,9 +139,12 @@ const Home: NextPage = () => {
                 leftIcon={<AiOutlineUpload />}
                 colorScheme="blue"
                 type={"submit"}
+                isLoading={buttonIsLoading}
+                loadingText='Обработка...'
               >
-                Открыть существующее расписание
+                Открыть
               </Button>
+
             </FormControl>
           </form>
           <Text fontSize={"xs"} color={"gray.500"}>
