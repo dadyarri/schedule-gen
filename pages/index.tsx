@@ -37,7 +37,7 @@ const Home: NextPage = () => {
 
     if (fileInput.files?.length === 0 || !fileInput.files) {
       setButtonIsLoading(false);
-      toast({
+      return toast({
         title: "Ошибка",
         description: "Вы не выбрали файл",
         status: "error",
@@ -52,7 +52,7 @@ const Home: NextPage = () => {
 
       if (entries.length !== 1) {
         setButtonIsLoading(false);
-        toast({
+        return toast({
           title: "Ошибка",
           description: "В архиве более одного файла",
           status: "error",
@@ -63,7 +63,7 @@ const Home: NextPage = () => {
 
       if (!entries[0].filename.endsWith(".json")) {
         setButtonIsLoading(false);
-        toast({
+        return toast({
           title: "Ошибка",
           description: "Архив не содержит JSON-файла",
           status: "error",
@@ -88,7 +88,7 @@ const Home: NextPage = () => {
 
       if (!valid) {
         setButtonIsLoading(false);
-        toast({
+        return toast({
           title: "Ошибка",
           description: "JSON в архиве не корректный",
           status: "error",
@@ -100,6 +100,7 @@ const Home: NextPage = () => {
         await router.push(`/?schedule=${jsonBase64}`, undefined, {
           shallow: true
         });
+        return true;
       }
     }
   };
