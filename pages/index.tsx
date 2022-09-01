@@ -41,7 +41,7 @@ const Home: NextPage = () => {
         title: "Ошибка",
         description: "Вы не выбрали файл",
         status: "error",
-        duration: 3000,
+        duration: 9000,
         isClosable: true
       });
     } else {
@@ -56,7 +56,7 @@ const Home: NextPage = () => {
           title: "Ошибка",
           description: "В архиве более одного файла",
           status: "error",
-          duration: 3000,
+          duration: 9000,
           isClosable: true
         });
       }
@@ -67,7 +67,7 @@ const Home: NextPage = () => {
           title: "Ошибка",
           description: "Архив не содержит JSON-файла",
           status: "error",
-          duration: 3000,
+          duration: 9000,
           isClosable: true
         });
       }
@@ -92,7 +92,7 @@ const Home: NextPage = () => {
           title: "Ошибка",
           description: "JSON в архиве не корректный",
           status: "error",
-          duration: 3000,
+          duration: 9000,
           isClosable: true
         });
       } else {
