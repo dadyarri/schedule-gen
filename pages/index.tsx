@@ -1,47 +1,19 @@
-import type { NextPage } from "next";
+import type {NextPage} from "next";
 import Layout from "../components/layout";
-import {
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  Box,
-  Button,
-  CloseButton,
-  FormControl,
-  Heading,
-  Input,
-  Text,
-  useDisclosure
-} from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { AiOutlineUpload, AiOutlineClear } from "react-icons/ai";
-import React, { FormEvent } from "react";
-import { BlobReader, TextWriter, ZipReader } from "@zip.js/zip.js";
+import {Box, Button, FormControl, Heading, Input, Text, useToast} from "@chakra-ui/react";
+import {useRouter} from "next/router";
+import {AiOutlineClear, AiOutlineUpload} from "react-icons/ai";
+import React, {FormEvent} from "react";
+import {BlobReader, TextWriter, ZipReader} from "@zip.js/zip.js";
 import Ajv from "ajv";
 import Schedule from "../components/schedule";
 
 const Home: NextPage = () => {
   const router = useRouter();
   const schedule = router.query["schedule"] as string;
-  const {
-    isOpen: isMissingFileVisible,
-    onClose: onMissingFileClose,
-    onOpen: onMissingFileOpen
-  } = useDisclosure({ defaultIsOpen: false });
+  const toast = useToast();
 
-  const {
-    isOpen: isMoreThanOneFileVisible,
-    onClose: onMoreThanOneFileClose,
-    onOpen: onMoreThanOneFileOpen
-  } = useDisclosure({ defaultIsOpen: false });
-
-  const {
-    isOpen: isInvalidJsonVisible,
-    onClose: onInvalidJsonClose,
-    onOpen: onInvalidJsonOpen
-  } = useDisclosure({ defaultIsOpen: false });
-
-  const [ buttonIsLoading, setButtonIsLoading ] = React.useState(false);
+  const [buttonIsLoading, setButtonIsLoading] = React.useState(false);
 
   function encodeData(str: string) {
     return encodeURIComponent(str);
@@ -65,15 +37,39 @@ const Home: NextPage = () => {
 
     if (fileInput.files?.length === 0 || !fileInput.files) {
       setButtonIsLoading(false);
-      return onMissingFileOpen();
+      toast({
+        title: "Ошибка",
+        description: "Вы не выбрали файл",
+        status: "error",
+        duration: 3000,
+        isClosable: true
+      });
     } else {
       const file = fileInput.files[0] as File;
+
       // @ts-ignore
       const entries = await new ZipReader(new BlobReader(file)).getEntries({});
 
       if (entries.length !== 1) {
         setButtonIsLoading(false);
-        return onMoreThanOneFileOpen();
+        toast({
+          title: "Ошибка",
+          description: "В архиве более одного файла",
+          status: "error",
+          duration: 3000,
+          isClosable: true
+        });
+      }
+
+      if (!entries[0].filename.endsWith(".json")) {
+        setButtonIsLoading(false);
+        toast({
+          title: "Ошибка",
+          description: "Архив не содержит JSON-файла",
+          status: "error",
+          duration: 3000,
+          isClosable: true
+        });
       }
 
       // @ts-ignore
@@ -92,7 +88,13 @@ const Home: NextPage = () => {
 
       if (!valid) {
         setButtonIsLoading(false);
-        return onInvalidJsonOpen();
+        toast({
+          title: "Ошибка",
+          description: "JSON в архиве не корректный",
+          status: "error",
+          duration: 3000,
+          isClosable: true
+        });
       } else {
         setButtonIsLoading(false);
         await router.push(`/?schedule=${jsonBase64}`, undefined, {
@@ -140,73 +142,16 @@ const Home: NextPage = () => {
                 colorScheme="blue"
                 type={"submit"}
                 isLoading={buttonIsLoading}
-                loadingText='Обработка...'
+                loadingText="Обработка..."
               >
                 Открыть
               </Button>
-
             </FormControl>
           </form>
           <Text fontSize={"xs"} color={"gray.500"}>
             Данные никуда не загружаются и обрабатываются в вашем браузере
           </Text>
         </Box>
-      )}
-      {isMissingFileVisible && (
-        <Alert
-          status="error"
-          mt={4}
-          id={"file-missing-error-alert"}
-          variant={"left-accent"}
-        >
-          <AlertIcon />
-          <AlertTitle>Добавьте файл!</AlertTitle>
-          <CloseButton
-            alignSelf="flex-start"
-            position="relative"
-            right={-1}
-            top={-1}
-            onClick={onMissingFileClose}
-          />
-        </Alert>
-      )}
-
-      {isMoreThanOneFileVisible && (
-        <Alert
-          status="error"
-          mt={4}
-          id={"more-than-one-file-error-alert"}
-          variant={"left-accent"}
-        >
-          <AlertIcon />
-          <AlertTitle>В архиве более одного файла!</AlertTitle>
-          <CloseButton
-            alignSelf="flex-start"
-            position="relative"
-            right={-1}
-            top={-1}
-            onClick={onMoreThanOneFileClose}
-          />
-        </Alert>
-      )}
-
-      {isInvalidJsonVisible && (
-        <Alert
-          status="error"
-          mt={4}
-          id={"invalid-json-error-alert"}
-          variant={"left-accent"}
-        >
-          <AlertIcon />
-          <AlertTitle>Некорректный JSON!</AlertTitle>
-          <CloseButton
-            alignSelf="flex-start"
-            position="relative"
-            right={-1}
-            top={-1}
-            onClick={onInvalidJsonClose}
-          />
-        </Alert>
       )}
     </Layout>
   );
