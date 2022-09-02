@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Layout from "../components/layout";
 import {
   Box,
-  Button,
+  Button, ButtonGroup,
   FormControl,
   Heading,
   Input,
@@ -10,9 +10,20 @@ import {
   useToast
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { AiOutlineClear, AiOutlineUpload } from "react-icons/ai";
+import {
+  AiOutlineClear,
+  AiOutlineUpload,
+  AiOutlineDownload
+} from "react-icons/ai";
 import React, { FormEvent } from "react";
-import { BlobReader, TextWriter, ZipReader } from "@zip.js/zip.js";
+import {
+  BlobReader,
+  BlobWriter,
+  TextReader,
+  TextWriter,
+  ZipReader,
+  ZipWriter
+} from "@zip.js/zip.js";
 import Ajv from "ajv";
 import Schedule from "../components/schedule";
 
@@ -27,7 +38,7 @@ const Home: NextPage = () => {
     return encodeURIComponent(str);
   }
 
-  function _decodeData(str: string) {
+  function decodeData(str: string) {
     return decodeURIComponent(str);
   }
 
@@ -119,6 +130,20 @@ const Home: NextPage = () => {
     });
   };
 
+  const downloadSchedule = async () => {
+    const schedule = decodeData(router.query["schedule"] as string);
+    const writer = new ZipWriter(new BlobWriter("application/zip"));
+    await writer.add("timetable_data.json", new TextReader(schedule));
+    if (writer) {
+      const blob = await writer.close(null);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "timetable_data.zip";
+      a.click();
+    }
+  };
+
   return (
     <Layout title={"Расписание"}>
       <Heading as={"h2"} alignSelf={"center"}>
@@ -127,13 +152,22 @@ const Home: NextPage = () => {
       {schedule ? (
         <>
           <Schedule schedule={schedule} />
-          <Button
-            leftIcon={<AiOutlineClear />}
-            colorScheme={"blue"}
-            onClick={clearSchedule}
-          >
-            Очистить
-          </Button>
+          <ButtonGroup>
+            <Button
+                leftIcon={<AiOutlineClear />}
+                colorScheme={"blue"}
+                onClick={clearSchedule}
+            >
+              Очистить
+            </Button>
+            <Button
+                leftIcon={<AiOutlineDownload />}
+                colorScheme={"blue"}
+                onClick={downloadSchedule}
+            >
+              Скачать
+            </Button>
+          </ButtonGroup>
         </>
       ) : (
         <Box mt={10}>
