@@ -110,7 +110,7 @@ const Home: NextPage = () => {
         setButtonIsLoading(false);
         return toast({
           title: "Ошибка",
-          description: "JSON в архиве не корректный",
+          description: "JSON в архиве не корректный. Ошибки: " + ajv.errorsText(),
           status: "error",
           duration: 9000,
           isClosable: true
