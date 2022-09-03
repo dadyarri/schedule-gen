@@ -26,8 +26,8 @@ const ScheduleDaysTab = ({ json }: Props) => {
     dateEnd: string
   ): boolean => {
     const currentDate = moment();
-    const startDate = moment(dateStart);
-    const endDate = moment(dateEnd);
+    const startDate = moment(dateStart, "MMM DD, YYYY HH:mm:ss");
+    const endDate = moment(dateEnd, "MMM DD, YYYY HH:mm:ss");
 
     return currentDate.isBetween(startDate, endDate);
   };
