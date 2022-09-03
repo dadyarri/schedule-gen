@@ -25,6 +25,7 @@ specifiers:
   eslint-config-next: 12.2.5
   framer-motion: ^7.2.1
   jsonata: ^1.8.6
+  moment: ^2.29.4
   next: 12.2.5
   next-pwa: ^5.6.0
   prettier: ^2.7.1
@@ -47,6 +48,7 @@ dependencies:
   circular-dependency-plugin: 5.2.2
   framer-motion: 7.2.1_biqbaboplfbrettd7655fr4n2y
   jsonata: 1.8.6
+  moment: 2.29.4
   next: 12.2.5_rlaikcoslzwwtqyk7brpdzej5y
   next-pwa: 5.6.0_jrfcohzf53vj6sldj32ireweoy
   react: 18.2.0
@@ -4412,6 +4414,10 @@ packages:
   /minimist/1.2.6:
     resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
     dev: true
+
+  /moment/2.29.4:
+    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
+    dev: false
 
   /mrmime/1.0.1:
     resolution: {integrity: sha512-hzzEagAgDyoU1Q6yg5uI+AorQgdvMCur3FcKf7NhMKWsaYg+RnbTyHRa/9IlLF9rf455MOCtcqqrQQ83pPP7Uw==}
