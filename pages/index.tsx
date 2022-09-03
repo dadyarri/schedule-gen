@@ -8,7 +8,8 @@ import {
   Heading,
   Input,
   Text,
-  useToast
+  Link,
+  useToast, HStack, LinkOverlay
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import {
@@ -16,6 +17,7 @@ import {
   AiOutlineUpload,
   AiOutlineDownload
 } from "react-icons/ai";
+import {IoLogoGooglePlaystore} from "react-icons/io5";
 import React, { FormEvent } from "react";
 import {
   BlobReader,
@@ -110,7 +112,8 @@ const Home: NextPage = () => {
         setButtonIsLoading(false);
         return toast({
           title: "Ошибка",
-          description: "JSON в архиве не корректный. Ошибки: " + ajv.errorsText(),
+          description:
+            "JSON в архиве не корректный. Ошибки: " + ajv.errorsText(),
           status: "error",
           duration: 9000,
           isClosable: true
@@ -150,6 +153,16 @@ const Home: NextPage = () => {
       <Heading as={"h2"} alignSelf={"center"}>
         Генератор расписания
       </Heading>
+      <Text>
+        Позволяет создать и отредактировать расписание в формате приложения
+        &quot;Расписание для студентов&quot;
+        <HStack>
+          <IoLogoGooglePlaystore/> <Text>Google Play</Text>
+          <LinkOverlay href={
+            "https://play.google.com/store/apps/details?id=com.bezgrebelnygregory.timetableforstudents"
+          }/>
+        </HStack>
+      </Text>
       {schedule ? (
         <>
           <Schedule schedule={schedule} />
