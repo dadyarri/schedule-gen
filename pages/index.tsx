@@ -10,6 +10,7 @@ import {
   Input,
   Link,
   Text,
+  Tooltip,
   useToast
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
@@ -19,6 +20,7 @@ import {
   AiOutlineUpload
 } from "react-icons/ai";
 import { IoLogoGooglePlaystore } from "react-icons/io5";
+import { IoIosAppstore } from "react-icons/io";
 import React, { FormEvent } from "react";
 import {
   BlobReader,
@@ -30,6 +32,7 @@ import {
 } from "@zip.js/zip.js";
 import Ajv from "ajv";
 import Schedule from "../components/schedule";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -163,11 +166,18 @@ const Home: NextPage = () => {
           "https://play.google.com/store/apps/details?id=com.bezgrebelnygregory.timetableforstudents"
         }
         target={"_blank"}
+        isExternal
       >
         <HStack>
-          <IoLogoGooglePlaystore /> <Text>Google Play</Text>
+          <IoLogoGooglePlaystore /> <Text>Google Play</Text>{" "}
+          <ExternalLinkIcon mx="2px" />
         </HStack>
       </Link>
+      <Tooltip label={"В разработке..."} hasArrow bg={"gray.800"}>
+        <HStack color={"gray.400"} width={"fit-content"}>
+          <IoIosAppstore /> <Text>App Store</Text>
+        </HStack>
+      </Tooltip>
       {schedule ? (
         <>
           <Schedule schedule={schedule} />
