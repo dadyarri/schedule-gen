@@ -1,20 +1,11 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  FormControl,
-  FormLabel,
-  HStack,
-  Select,
-  Text
-} from "@chakra-ui/react";
-import { TimeTable } from "../libs/types";
-import React, { useState } from "react";
-import { CheckIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import {Box, Button, Divider, Flex, FormControl, FormLabel, HStack, Select, Text} from "@chakra-ui/react";
+import {TimeTable} from "../libs/types";
+import React, {useState} from "react";
+import {CheckIcon, DeleteIcon, EditIcon} from "@chakra-ui/icons";
 import {
   decodeData,
   encodeData,
+  generateRandomString,
   getListOfRooms,
   getListOfSubjects,
   getListOfTeachers,
@@ -22,7 +13,7 @@ import {
   getListOfTypes,
   getTimeTableById
 } from "../utils";
-import { useRouter } from "next/router";
+import {useRouter} from "next/router";
 
 const ScheduleCard = ({
   id,
@@ -176,7 +167,7 @@ const ScheduleCard = ({
             <FormLabel>Время</FormLabel>
             <Select id={"timeSelect"}>
               {getListOfTime(json).map(t => (
-                <option value={t.id} selected={t.time == time}>
+                <option value={t.id} selected={t.time == time} key={generateRandomString(5)}>
                   {t.time}
                 </option>
               ))}
@@ -186,7 +177,7 @@ const ScheduleCard = ({
             <FormLabel>Предмет</FormLabel>
             <Select id={"subjectSelect"}>
               {getListOfSubjects(json).map(t => (
-                <option value={t.id} selected={t.subject == lesson}>
+                <option value={t.id} selected={t.subject == lesson} key={generateRandomString(5)}>
                   {t.subject}
                 </option>
               ))}
@@ -196,7 +187,7 @@ const ScheduleCard = ({
             <FormLabel>Тип занятия</FormLabel>
             <Select id={"typeSelect"}>
               {getListOfTypes(json).map(t => (
-                <option value={t.id} selected={t.type == type}>
+                <option value={t.id} selected={t.type == type} key={generateRandomString(5)}>
                   {t.type}
                 </option>
               ))}
@@ -206,7 +197,7 @@ const ScheduleCard = ({
             <FormLabel>Преподаватель</FormLabel>
             <Select id={"teacherSelect"}>
               {getListOfTeachers(json).map(t => (
-                <option value={t.id} selected={t.teacher == teacher}>
+                <option value={t.id} selected={t.teacher == teacher} key={generateRandomString(5)}>
                   {t.teacher}
                 </option>
               ))}
@@ -216,7 +207,7 @@ const ScheduleCard = ({
             <FormLabel>Аудитория</FormLabel>
             <Select id={"roomSelect"}>
               {getListOfRooms(json).map(t => (
-                <option value={t.id} selected={t.room == room}>
+                <option value={t.id} selected={t.room == room} key={generateRandomString(5)}>
                   {t.room}
                 </option>
               ))}
