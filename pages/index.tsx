@@ -174,7 +174,7 @@ const Home: NextPage = () => {
       </Tooltip>
       {schedule ? (
         <>
-          <Schedule schedule={schedule} />
+          <Schedule schedule={decodeData(schedule)} />
           <ButtonGroup>
             <Button
               leftIcon={<AiOutlineClear />}

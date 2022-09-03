@@ -1,6 +1,7 @@
-import { DayWeekItem, TimeTable, TimetableItem } from "./libs/types";
+import {DayWeekItem, TimeTable, TimetableItem} from "./libs/types";
 import jsonata from "jsonata";
 import _ from "underscore";
+import JSONCrush from "jsoncrush";
 
 const dayNumberToShortName = (day: number) => {
   switch (day) {
@@ -277,11 +278,12 @@ const buildTimetable = (
 };
 
 function encodeData(str: string) {
-  return encodeURIComponent(str);
+  const crushed = JSONCrush.crush(str)
+  return encodeURIComponent(crushed);
 }
 
 function decodeData(str: string) {
-  return decodeURIComponent(str);
+  return JSONCrush.uncrush(str);
 }
 
 const getTimeTableById = (
