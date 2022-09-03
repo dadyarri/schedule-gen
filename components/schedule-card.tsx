@@ -1,4 +1,4 @@
-import {Button, Divider, Flex, HStack, Text} from "@chakra-ui/react";
+import {Box, Button, Divider, Flex, HStack, Text} from "@chakra-ui/react";
 import {TimeTable} from "../libs/types";
 import {useState} from "react";
 import {CheckIcon, EditIcon} from "@chakra-ui/icons";
@@ -98,7 +98,7 @@ const ScheduleCard = ({
                   borderRadius={"10px"}
                   borderColor={getColorName(color)}
               />
-          ) : null}
+          ) : <Box alignSelf={"flex-start"} width={"xl"}></Box>}
           <Button
               leftIcon={<EditIcon />}
               variant={"ghost"}
