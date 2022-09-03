@@ -146,13 +146,13 @@ const Home: NextPage = () => {
       <Text>
         Позволяет создать и отредактировать расписание в формате приложения
         &quot;Расписание для студентов&quot;
-        <HStack>
-          <IoLogoGooglePlaystore/> <Text>Google Play</Text>
-          <LinkOverlay href={
-            "https://play.google.com/store/apps/details?id=com.bezgrebelnygregory.timetableforstudents"
-          }/>
-        </HStack>
       </Text>
+      <HStack>
+        <IoLogoGooglePlaystore/> <Text>Google Play</Text>
+        <LinkOverlay href={
+          "https://play.google.com/store/apps/details?id=com.bezgrebelnygregory.timetableforstudents"
+        }/>
+      </HStack>
       {schedule ? (
         <>
           <Schedule schedule={schedule} />
