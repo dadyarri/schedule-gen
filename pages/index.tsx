@@ -161,7 +161,7 @@ const Home: NextPage = () => {
       <Link
         href={
           "https://play.google.com/store/apps/details?id=com.bezgrebelnygregory.timetableforstudents"
-        }
+        } target={"_blank"}
       >
         <HStack>
           <IoLogoGooglePlaystore /> <Text>Google Play</Text>
