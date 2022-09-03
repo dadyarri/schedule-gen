@@ -58,57 +58,114 @@ const getRoomName = (
   schedule: object,
   timetableId: number
 ): { room: string } => {
-  return jsonata(
-    `timetableList@$T.roomList@$R[$T.roomId = $R.id][$T.id=${timetableId}]{"room": $R.name}`
-  ).evaluate(schedule);
+
+  let roomName;
+
+  try {
+    roomName = jsonata(
+        `timetableList@$T.roomList@$R[$T.roomId = $R.id][$T.id=${timetableId}]{"room": $R.name}`
+    ).evaluate(schedule);
+  } catch (TypeError) {
+    roomName = {"room": ""};
+  }
+  return roomName;
 };
 
 const getTypeName = (
   schedule: object,
   timetableId: number
 ): { type: string } => {
-  return jsonata(
-    `timetableList@$T.typeList@$TP[$T.typeId = $TP.id][$T.id=${timetableId}]{"type": $TP.name}`
-  ).evaluate(schedule);
+  let typeName;
+
+  try {
+    typeName = jsonata(
+        `timetableList@$T.typeList@$TP[$T.typeId = $TP.id][$T.id=${timetableId}]{"type": $TP.name}`
+    ).evaluate(schedule);
+  } catch (TypeError) {
+    typeName = {"type": ""};
+  }
+  return typeName;
 };
 
 const getTeacherName = (
   schedule: object,
   timetableId: number
 ): { teacher: string } => {
-  return jsonata(
-    `timetableList@$T.teacherList@$TC[$T.teacherId = $TC.id][$T.id=${timetableId}]{"teacher": $TC.name}`
-  ).evaluate(schedule);
+
+  let teacherName;
+
+  try {
+    teacherName = jsonata(
+        `timetableList@$T.teacherList@$TC[$T.teacherId = $TC.id][$T.id=${timetableId}]{"teacher": $TC.name}`
+    ).evaluate(schedule);
+  } catch (TypeError) {
+    teacherName = {"teacher": ""};
+  }
+  return teacherName;
 };
 
 const getTime = (schedule: object, timetableId: number): { time: string } => {
-  return jsonata(
-    `timetableList@$T.timeList@$TM[$T.timeId = $TM.id][$T.id=${timetableId}]{"time": $TM.start & " - " & $TM.end}`
-  ).evaluate(schedule);
+
+  let time;
+
+  try {
+    time = jsonata(
+        `timetableList@$T.timeList@$TM[$T.timeId = $TM.id][$T.id=${timetableId}]{"time": $TM.start & " - " & $TM.end}`
+    ).evaluate(schedule);
+  } catch (TypeError) {
+    time = {"time": ""};
+  }
+  return time;
 };
 
 const getDateStart = (
   schedule: object,
   timetableId: number
 ): { dateStart: string } => {
-  return jsonata(
-    `timetableList[id=${timetableId}]{"dateStart": dateStart}`
-  ).evaluate(schedule);
+
+  let dateStart;
+
+  try {
+    dateStart = jsonata(
+        `timetableList[id=${timetableId}]{"dateStart": dateStart}`
+    ).evaluate(schedule);
+  } catch (TypeError) {
+    dateStart = {"dateStart": ""};
+  }
+  return dateStart;
 };
 
 const getDateEnd = (
   schedule: object,
   timetableId: number
 ): { dateEnd: string } => {
-  return jsonata(
-    `timetableList[id=${timetableId}]{"dateEnd": dateEnd}`
-  ).evaluate(schedule);
+
+  let dateEnd;
+
+  try {
+    dateEnd = jsonata(
+        `timetableList[id=${timetableId}]{"dateEnd": dateEnd}`
+    ).evaluate(schedule);
+  } catch (TypeError) {
+    dateEnd = {"dateEnd": ""};
+  }
+  return dateEnd;
+
 };
 
 const getColor = (schedule: object, timetableId: number): { color: number } => {
-  return jsonata(
-    `timetableList@$T.lessonList@$L[$T.lessonId = $L.id][$T.id=${timetableId}]{"color": $L.color}`
-  ).evaluate(schedule);
+
+  let color;
+
+  try {
+    color = jsonata(
+        `timetableList@$T.lessonList@$L[$T.lessonId = $L.id][$T.id=${timetableId}]{"color": $L.color}`
+    ).evaluate(schedule);
+  } catch (TypeError) {
+    color = {"color": ""};
+  }
+  return color;
+
 };
 
 const getTimetableByDayAndWeek = (
