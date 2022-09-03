@@ -7,7 +7,7 @@ import {
   Tabs
 } from "@chakra-ui/react";
 import {
-  dayNumberToShortName,
+  dayNumberToShortName, generateRandomString,
   getDistinctDays,
   getDistinctWeeks,
   getTimetableByDayAndWeek
@@ -45,19 +45,6 @@ const ScheduleDaysTab = ({ json }: Props) => {
     const endDate = moment(dateEnd, "MMM DD, YYYY HH:mm:ss");
 
     return currentDate.isBetween(startDate, endDate);
-  };
-
-  const generateRandomString = (length: number): string => {
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(
-        Math.floor(Math.random() * characters.length)
-      );
-    }
-
-    return result;
   };
 
   const addLesson = () => {
