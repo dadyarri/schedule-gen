@@ -1,4 +1,11 @@
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import {
+  Button,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs
+} from "@chakra-ui/react";
 import {
   dayNumberToShortName,
   getDistinctDays,
@@ -8,6 +15,8 @@ import {
 import { ParsedSchedule, TimeTable } from "../libs/types";
 import ScheduleCard from "./schedule-card";
 import moment from "moment";
+import { PlusSquareIcon } from "@chakra-ui/icons";
+import { ReactNode, useState } from "react";
 
 type Props = {
   json: ParsedSchedule;
@@ -16,6 +25,8 @@ type Props = {
 const ScheduleDaysTab = ({ json }: Props) => {
   const days: number[] = getDistinctDays(json.dayWeekList);
   const weeks: number[] = getDistinctWeeks(json.dayWeekList);
+
+  const [lessons, setLessons] = useState([] as JSX.Element[]);
 
   const getCurrentWeek = (): number => {
     return moment().week() % 2;
@@ -47,6 +58,44 @@ const ScheduleDaysTab = ({ json }: Props) => {
     }
 
     return result;
+  };
+
+  const addLesson = () => {
+    // const newLesson: TimeTable = {
+    //   id: 100,
+    //   lesson: "",
+    //   room: "",
+    //   type: "",
+    //   teacher: "",
+    //   time: "",
+    //   color: 0,
+    //   week: 0,
+    //   dateStart: "",
+    //   dateEnd: ""
+    // };
+
+    setLessons([
+      ...lessons,
+      <ScheduleCard
+        id={getNextId()}
+        key={generateRandomString(5)}
+        lesson={""}
+        time={""}
+        isInEditMode={true}
+      />
+    ]);
+    // json.timetableList.push(newLesson);
+  };
+
+  const getNextId = (): number => {
+    let max = 0;
+    json.timetableList.forEach(item => {
+      if (item.id > max) {
+        max = item.id;
+      }
+    });
+
+    return max + 1;
   };
 
   return (
@@ -89,6 +138,16 @@ const ScheduleDaysTab = ({ json }: Props) => {
                           )
                         );
                       })}
+                      {lessons.map((_lesson: ReactNode) => {
+                        return _lesson;
+                      })}
+                      <Button
+                        leftIcon={<PlusSquareIcon />}
+                        colorScheme="blue"
+                        onClick={addLesson}
+                      >
+                        Создать
+                      </Button>
                     </TabPanel>
                   );
                 })}
