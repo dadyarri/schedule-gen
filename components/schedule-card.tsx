@@ -11,9 +11,10 @@ import {
 } from "@chakra-ui/react";
 import { TimeTable } from "../libs/types";
 import React, { useState } from "react";
-import { CheckIcon, EditIcon } from "@chakra-ui/icons";
+import { CheckIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
-  decodeData, encodeData,
+  decodeData,
+  encodeData,
   getListOfRooms,
   getListOfSubjects,
   getListOfTeachers,
@@ -35,7 +36,9 @@ const ScheduleCard = ({
   const router = useRouter();
 
   const [cardState, setCardState] = useState(false);
-  const [buttonIsLoading, setButtonIsLoading] = React.useState(false);
+  const [saveButtonIsLoading, setSaveButtonIsLoading] = React.useState(false);
+  const [deleteButtonIsLoading, setDeleteButtonIsLoading] =
+    React.useState(false);
   const schedule = router.query["schedule"] as string;
 
   const json = JSON.parse(decodeData(schedule));
@@ -89,8 +92,30 @@ const ScheduleCard = ({
     setCardState(true);
   };
 
+  const onDeleteButtonClick = async () => {
+    setDeleteButtonIsLoading(true);
+    const newJson = Object.assign({}, json);
+    for (let i = 0; i < newJson.timetableList.length; i++) {
+      if (newJson.timetableList[i].id === id) {
+        newJson.timetableList.splice(i, 1);
+      }
+    }
+    for (let i = 0; i < newJson.dayWeekList.length; i++) {
+      if (newJson.dayWeekList[i].timetableId === id) {
+        newJson.dayWeekList.splice(i, 1);
+      }
+    }
+    await router.push(
+      "/?schedule=" + encodeData(JSON.stringify(newJson)),
+      undefined,
+      { shallow: true }
+    );
+    setCardState(false);
+    setDeleteButtonIsLoading(false);
+  };
+
   const onSaveButtonClick = async () => {
-    setButtonIsLoading(true);
+    setSaveButtonIsLoading(true);
 
     const newJson = Object.assign({}, json);
 
@@ -119,11 +144,15 @@ const ScheduleCard = ({
       tt.teacherId = parseInt(teacherSelect.value);
       tt.roomId = parseInt(roomSelect.value);
 
-      await router.push("/?schedule=" + encodeData(JSON.stringify(newJson)), undefined, { shallow: true });
+      await router.push(
+        "/?schedule=" + encodeData(JSON.stringify(newJson)),
+        undefined,
+        { shallow: true }
+      );
       setCardState(false);
     }
 
-    setButtonIsLoading(false);
+    setSaveButtonIsLoading(false);
   };
 
   if (cardState) {
@@ -197,10 +226,20 @@ const ScheduleCard = ({
             colorScheme={"blue"}
             m={2}
             onClick={onSaveButtonClick}
-            isLoading={buttonIsLoading}
+            isLoading={saveButtonIsLoading}
             loadingText={"Сохранение..."}
           >
             Сохранить
+          </Button>
+          <Button
+            leftIcon={<DeleteIcon />}
+            colorScheme={"red"}
+            m={2}
+            onClick={onDeleteButtonClick}
+            isLoading={deleteButtonIsLoading}
+            loadingText={"Удаление..."}
+          >
+            Удалить
           </Button>
         </form>
       </Flex>
