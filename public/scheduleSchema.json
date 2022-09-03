@@ -432,7 +432,7 @@
       }
     },
     "dateList": {
-      "description": "???",
+      "description": "List of dates, when classes is visible",
       "type": "array",
       "items": {
         "$ref": "#/definitions/dateListItem"
