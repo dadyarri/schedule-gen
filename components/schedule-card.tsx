@@ -7,7 +7,7 @@ const ScheduleCard = ({
   type,
   teacher,
   time,
-  color = -1
+  color
 }: TimeTable) => {
   const getColorName = (color: number): string => {
     switch (color) {
@@ -56,22 +56,28 @@ const ScheduleCard = ({
 
   return (
     <VStack border={"1px"} borderRadius={"5px"} p={2} m={2} align={"left"}>
-      <Divider
+      { color ? <Divider
         orientation="vertical"
         m={1}
         mb={3}
         borderWidth={"3px"}
         borderRadius={"10px"}
         borderColor={getColorName(color)}
-      />
+      /> : null }
       <Text fontWeight={"bold"} fontSize={"20px"}>
         {time}
       </Text>
-      <Text fontWeight={"semibold"} fontSize={"19px"}>
-        {lesson} ({type})
-      </Text>
-      <Text>{teacher}</Text>
-      <Text>{room}</Text>
+      {type ? (
+        <Text fontWeight={"semibold"} fontSize={"19px"}>
+          {lesson} ({type})
+        </Text>
+      ) : (
+        <Text fontWeight={"semibold"} fontSize={"19px"}>
+          {lesson}
+        </Text>
+      )}
+      { teacher ? <Text>{teacher}</Text> : null }
+      { room ? <Text>{room}</Text> : null }
     </VStack>
   );
 };
