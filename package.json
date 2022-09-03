@@ -28,7 +28,8 @@
     "next-pwa": "^5.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.4.0"
+    "react-icons": "^4.4.0",
+    "underscore": "^1.13.4"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.2.5",
@@ -38,6 +39,7 @@
     "@types/node": "18.7.14",
     "@types/react": "18.0.18",
     "@types/react-dom": "18.0.6",
+    "@types/underscore": "^1.11.4",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "eslint": "8.22.0",
