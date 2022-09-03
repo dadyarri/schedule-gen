@@ -13,7 +13,7 @@ import { TimeTable } from "../libs/types";
 import { useState } from "react";
 import { CheckIcon, EditIcon } from "@chakra-ui/icons";
 import { decodeData, getListOfTime } from "../utils";
-import { router } from "next/client";
+import { useRouter } from 'next/router'
 
 const ScheduleCard = ({
   lesson,
@@ -23,6 +23,9 @@ const ScheduleCard = ({
   time,
   color
 }: TimeTable) => {
+
+  const router = useRouter();
+
   const [cardState, setCardState] = useState(false);
   const schedule = router.query["schedule"] as string;
 
@@ -103,8 +106,8 @@ const ScheduleCard = ({
         <FormControl>
           <FormLabel>Время</FormLabel>
           <Select>
-            {getListOfTime(json).map(time => (
-              <option value={time.id}>{time.time}</option>
+            {getListOfTime(json).map(t => (
+              <option value={t.id} selected={t.time == time}>{t.time}</option>
             ))}
           </Select>
         </FormControl>
