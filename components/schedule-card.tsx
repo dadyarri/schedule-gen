@@ -104,66 +104,65 @@ const ScheduleCard = ({
           <Text width={"xl"} fontSize={"20px"} fontWeight={"bold"}>
             Редактирование
           </Text>
-          <Button
-            leftIcon={<CheckIcon />}
-            variant={"ghost"}
-            alignSelf="flex-end"
-            position="relative"
-            right={-1}
-            top={-1}
-            onClick={onSaveButtonClick}
-          />
         </HStack>
-        <FormControl my={2}>
-          <FormLabel>Время</FormLabel>
-          <Select>
-            {getListOfTime(json).map(t => (
-              <option value={t.id} selected={t.time == time}>
-                {t.time}
-              </option>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl my={2}>
-          <FormLabel>Предмет</FormLabel>
-          <Select>
-            {getListOfSubjects(json).map(t => (
-              <option value={t.id} selected={t.subject == lesson}>
-                {t.subject}
-              </option>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl my={2}>
-          <FormLabel>Тип занятия</FormLabel>
-          <Select>
-            {getListOfTypes(json).map(t => (
-              <option value={t.id} selected={t.type == type}>
-                {t.type}
-              </option>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl my={2}>
-          <FormLabel>Преподаватель</FormLabel>
-          <Select>
-            {getListOfTeachers(json).map(t => (
-              <option value={t.id} selected={t.teacher == teacher}>
-                {t.teacher}
-              </option>
-            ))}
-          </Select>
-        </FormControl>
-        <FormControl my={2}>
-          <FormLabel>Аудитория</FormLabel>
-          <Select>
-            {getListOfRooms(json).map(t => (
-              <option value={t.id} selected={t.room == room}>
-                {t.room}
-              </option>
-            ))}
-          </Select>
-        </FormControl>
+        <form onSubmit={onSaveButtonClick}>
+          <FormControl my={2}>
+            <FormLabel>Время</FormLabel>
+            <Select>
+              {getListOfTime(json).map(t => (
+                  <option value={t.id} selected={t.time == time}>
+                    {t.time}
+                  </option>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl my={2}>
+            <FormLabel>Предмет</FormLabel>
+            <Select>
+              {getListOfSubjects(json).map(t => (
+                  <option value={t.id} selected={t.subject == lesson}>
+                    {t.subject}
+                  </option>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl my={2}>
+            <FormLabel>Тип занятия</FormLabel>
+            <Select>
+              {getListOfTypes(json).map(t => (
+                  <option value={t.id} selected={t.type == type}>
+                    {t.type}
+                  </option>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl my={2}>
+            <FormLabel>Преподаватель</FormLabel>
+            <Select>
+              {getListOfTeachers(json).map(t => (
+                  <option value={t.id} selected={t.teacher == teacher}>
+                    {t.teacher}
+                  </option>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl my={2}>
+            <FormLabel>Аудитория</FormLabel>
+            <Select>
+              {getListOfRooms(json).map(t => (
+                  <option value={t.id} selected={t.room == room}>
+                    {t.room}
+                  </option>
+              ))}
+            </Select>
+          </FormControl>
+          <Button
+              leftIcon={<CheckIcon />}
+              colorScheme={"blue"}
+              m={2}
+              onClick={onSaveButtonClick}
+          >Сохранить</Button>
+        </form>
       </Flex>
     );
   } else {
