@@ -1,4 +1,4 @@
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
+import {Tab, TabList, TabPanel, TabPanels, Tabs} from "@chakra-ui/react";
 import {
   buildTimetable,
   dayNumberToShortName,
@@ -6,8 +6,9 @@ import {
   getDistinctWeeks,
   getTimetableByDayAndWeek
 } from "../utils";
-import { ParsedSchedule } from "../libs/types";
+import {ParsedSchedule} from "../libs/types";
 import ScheduleCard from "./schedule-card";
+import moment from "moment";
 
 type Props = {
   json: ParsedSchedule;
@@ -16,6 +17,10 @@ type Props = {
 const ScheduleDaysTab = ({ json }: Props) => {
   const days: number[] = getDistinctDays(json.dayWeekList);
   const weeks: number[] = getDistinctWeeks(json.dayWeekList);
+
+  const getCurrentWeek = (): number => {
+    return moment().week() % 2;
+  }
 
   return (
     <Tabs variant={"solid-rounded"}>
@@ -28,7 +33,7 @@ const ScheduleDaysTab = ({ json }: Props) => {
       <TabPanels>
         {days.map((day: number) => (
           <TabPanel>
-            <Tabs variant={"soft-rounded"} m={3}>
+            <Tabs variant={"soft-rounded"} m={3} defaultIndex={getCurrentWeek()}>
               <TabList>
                 {weeks.map((week: number) => (
                   <Tab key={week}>Неделя {week + 1}</Tab>
