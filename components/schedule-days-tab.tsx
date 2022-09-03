@@ -22,8 +22,8 @@ const ScheduleDaysTab = ({ json }: Props) => {
   };
 
   const ifCurrentDateIsInRange = (
-    dateStart: string,
-    dateEnd: string
+    dateStart?: string,
+    dateEnd?: string
   ): boolean => {
     if (!dateStart || !dateEnd) {
       return true;
