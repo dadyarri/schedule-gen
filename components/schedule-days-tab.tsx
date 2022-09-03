@@ -6,7 +6,7 @@ import {
   getDistinctWeeks,
   getTimetableByDayAndWeek
 } from "../utils";
-import {ParsedSchedule} from "../libs/types";
+import {ParsedSchedule, TimeTable} from "../libs/types";
 import ScheduleCard from "./schedule-card";
 import moment from "moment";
 
@@ -49,13 +49,12 @@ const ScheduleDaysTab = ({ json }: Props) => {
               </TabList>
               <TabPanels>
                 {weeks.map((week: number) => {
-                  const timetable = getTimetableByDayAndWeek(json, day, week);
+                  const timetable: TimeTable[] = getTimetableByDayAndWeek(json, day, week);
                   return (
                     <TabPanel key={week}>
                       {timetable.map(t => {
-                        const struct = buildTimetable(json, t, week);
                         return (
-                            ifCurrentDateIsInRange(struct.dateStart, struct.dateEnd) && (<ScheduleCard {...struct} />)
+                            ifCurrentDateIsInRange(t.dateStart, t.dateEnd) && (<ScheduleCard {...t} />)
                         );
                       })}
                     </TabPanel>

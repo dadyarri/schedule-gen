@@ -1,5 +1,6 @@
 import { DayWeekItem, TimeTable, TimetableItem } from "./libs/types";
 import jsonata from "jsonata";
+import _ from "underscore";
 
 const dayNumberToShortName = (day: number) => {
   switch (day) {
@@ -102,10 +103,19 @@ const getTimetableByDayAndWeek = (
   schedule: object,
   day: number,
   week: number
-): number[] => {
-  return jsonata(`dayWeekList[day=${day}][week=${week}].timetableId`).evaluate(
+): TimeTable[] => {
+  const lessonIds = jsonata(`dayWeekList[day=${day}][week=${week}].timetableId`).evaluate(
     schedule
   );
+
+  const timetable: TimeTable[] = [];
+
+  lessonIds.map((id: number) => {
+    timetable.push(buildTimetable(schedule, id, week));
+  });
+
+  return _.sortBy(timetable, "time");
+
 };
 
 const buildTimetable = (
