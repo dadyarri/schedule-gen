@@ -87,13 +87,19 @@ const getTime = (schedule: object, timetableId: number): { time: string } => {
   ).evaluate(schedule);
 };
 
-const getDateStart = (schedule: object, timetableId: number): { dateStart: string } => {
+const getDateStart = (
+  schedule: object,
+  timetableId: number
+): { dateStart: string } => {
   return jsonata(
     `timetableList[id=${timetableId}]{"dateStart": dateStart}`
   ).evaluate(schedule);
 };
 
-const getDateEnd = (schedule: object, timetableId: number): { dateEnd: string } => {
+const getDateEnd = (
+  schedule: object,
+  timetableId: number
+): { dateEnd: string } => {
   return jsonata(
     `timetableList[id=${timetableId}]{"dateEnd": dateEnd}`
   ).evaluate(schedule);
@@ -104,9 +110,9 @@ const getTimetableByDayAndWeek = (
   day: number,
   week: number
 ): TimeTable[] => {
-  const lessonIds = jsonata(`dayWeekList[day=${day}][week=${week}].timetableId`).evaluate(
-    schedule
-  );
+  const lessonIds = jsonata(
+    `dayWeekList[day=${day}][week=${week}].timetableId`
+  ).evaluate(schedule);
 
   const timetable: TimeTable[] = [];
 
@@ -115,7 +121,6 @@ const getTimetableByDayAndWeek = (
   });
 
   return _.sortBy(timetable, "time");
-
 };
 
 const buildTimetable = (
