@@ -388,7 +388,8 @@
           "$ref": "#/definitions/nonNegativeInteger"
         },
         "uri": {
-          "type": "string"
+          "type": "string",
+          "pattern": "^file:///[-a-zA-Z0-9@:%._+~#=/]*$"
         }
       },
       "required": ["id", "homeworkId", "uri"]
