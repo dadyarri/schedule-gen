@@ -1,7 +1,19 @@
-import { Box, Button, Divider, Flex, HStack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  FormControl,
+  FormLabel,
+  HStack,
+  Select,
+  Text
+} from "@chakra-ui/react";
 import { TimeTable } from "../libs/types";
 import { useState } from "react";
 import { CheckIcon, EditIcon } from "@chakra-ui/icons";
+import { decodeData, getListOfTime } from "../utils";
+import { router } from "next/client";
 
 const ScheduleCard = ({
   lesson,
@@ -12,6 +24,9 @@ const ScheduleCard = ({
   color
 }: TimeTable) => {
   const [cardState, setCardState] = useState(false);
+  const schedule = router.query["schedule"] as string;
+
+  const json = JSON.parse(decodeData(schedule));
 
   const getColorName = (color: number): string => {
     switch (color) {
@@ -85,6 +100,14 @@ const ScheduleCard = ({
           top={-1}
           onClick={onSaveButtonClick}
         />
+        <FormControl>
+          <FormLabel>Время</FormLabel>
+          <Select>
+            {getListOfTime(json).map(time => (
+              <option value={time.id}>{time.time}</option>
+            ))}
+          </Select>
+        </FormControl>
       </Flex>
     );
   } else {
