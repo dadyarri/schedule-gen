@@ -1,4 +1,4 @@
-import { DayWeekItem, TimeTable, TimetableItem } from "./libs/types";
+import {DayWeekItem, TimeTable, TimetableItem} from "./libs/types";
 import jsonata from "jsonata";
 import _ from "underscore";
 
@@ -165,8 +165,6 @@ const getTimetableByDayAndWeek = (
   day: number,
   week: number
 ): TimeTable[] => {
-  console.log(day, week);
-
   const lessonIds = jsonata(
     `dayWeekList[day=${day}][week=${week}].[timetableId]`
   ).evaluate(schedule); // could be undefined
