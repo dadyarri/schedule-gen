@@ -7,6 +7,7 @@ export type TimeTable = {
   week: number;
   dateStart: string;
   dateEnd: string;
+  color?: number;
 };
 
 export type DayWeekItem = {

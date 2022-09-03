@@ -105,6 +105,12 @@ const getDateEnd = (
   ).evaluate(schedule);
 };
 
+const getColor = (schedule: object, timetableId: number): {color: number} => {
+  return jsonata(
+    `timetableList@$T.lessonList@$L[$T.lessonId = $L.id][$T.id=${timetableId}]{"color": $L.color}`
+  ).evaluate(schedule);
+}
+
 const getTimetableByDayAndWeek = (
   schedule: object,
   day: number,
@@ -136,6 +142,7 @@ const buildTimetable = (
     time: getTime(schedule, timetableId).time,
     dateStart: getDateStart(schedule, timetableId).dateStart,
     dateEnd: getDateEnd(schedule, timetableId).dateEnd,
+    color: getColor(schedule, timetableId).color,
     week: week
   };
 };
