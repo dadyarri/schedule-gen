@@ -13,16 +13,18 @@ import { TimeTable } from "../libs/types";
 import { useState } from "react";
 import { CheckIcon, EditIcon } from "@chakra-ui/icons";
 import {
-  decodeData,
+  decodeData, encodeData,
   getListOfRooms,
   getListOfSubjects,
   getListOfTeachers,
   getListOfTime,
-  getListOfTypes
+  getListOfTypes,
+  getTimeTableById
 } from "../utils";
 import { useRouter } from "next/router";
 
 const ScheduleCard = ({
+  id,
   lesson,
   room,
   type,
@@ -86,8 +88,39 @@ const ScheduleCard = ({
     setCardState(true);
   };
 
-  const onSaveButtonClick = () => {
-    setCardState(false);
+  const onSaveButtonClick = async () => {
+    const newJson = Object.assign({}, json);
+
+    const timeSelect = document.getElementById(
+      "timeSelect"
+    ) as HTMLSelectElement;
+    const subjectSelect = document.getElementById(
+      "subjectSelect"
+    ) as HTMLSelectElement;
+    const typeSelect = document.getElementById(
+      "typeSelect"
+    ) as HTMLSelectElement;
+    const teacherSelect = document.getElementById(
+      "teacherSelect"
+    ) as HTMLSelectElement;
+    const roomSelect = document.getElementById(
+      "roomSelect"
+    ) as HTMLSelectElement;
+
+    const tt = getTimeTableById(newJson, id);
+
+    console.log(tt);
+
+    if (tt) {
+      tt.timeId = parseInt(timeSelect.value);
+      tt.lessonId = parseInt(subjectSelect.value);
+      tt.typeId = parseInt(typeSelect.value);
+      tt.teacherId = parseInt(teacherSelect.value);
+      tt.roomId = parseInt(roomSelect.value);
+
+      await router.push("/?schedule=" + encodeData(JSON.stringify(newJson)), undefined, { shallow: true });
+      setCardState(false);
+    }
   };
 
   if (cardState) {
@@ -108,60 +141,62 @@ const ScheduleCard = ({
         <form onSubmit={onSaveButtonClick}>
           <FormControl my={2}>
             <FormLabel>Время</FormLabel>
-            <Select>
+            <Select id={"timeSelect"}>
               {getListOfTime(json).map(t => (
-                  <option value={t.id} selected={t.time == time}>
-                    {t.time}
-                  </option>
+                <option value={t.id} selected={t.time == time}>
+                  {t.time}
+                </option>
               ))}
             </Select>
           </FormControl>
           <FormControl my={2}>
             <FormLabel>Предмет</FormLabel>
-            <Select>
+            <Select id={"subjectSelect"}>
               {getListOfSubjects(json).map(t => (
-                  <option value={t.id} selected={t.subject == lesson}>
-                    {t.subject}
-                  </option>
+                <option value={t.id} selected={t.subject == lesson}>
+                  {t.subject}
+                </option>
               ))}
             </Select>
           </FormControl>
           <FormControl my={2}>
             <FormLabel>Тип занятия</FormLabel>
-            <Select>
+            <Select id={"typeSelect"}>
               {getListOfTypes(json).map(t => (
-                  <option value={t.id} selected={t.type == type}>
-                    {t.type}
-                  </option>
+                <option value={t.id} selected={t.type == type}>
+                  {t.type}
+                </option>
               ))}
             </Select>
           </FormControl>
           <FormControl my={2}>
             <FormLabel>Преподаватель</FormLabel>
-            <Select>
+            <Select id={"teacherSelect"}>
               {getListOfTeachers(json).map(t => (
-                  <option value={t.id} selected={t.teacher == teacher}>
-                    {t.teacher}
-                  </option>
+                <option value={t.id} selected={t.teacher == teacher}>
+                  {t.teacher}
+                </option>
               ))}
             </Select>
           </FormControl>
           <FormControl my={2}>
             <FormLabel>Аудитория</FormLabel>
-            <Select>
+            <Select id={"roomSelect"}>
               {getListOfRooms(json).map(t => (
-                  <option value={t.id} selected={t.room == room}>
-                    {t.room}
-                  </option>
+                <option value={t.id} selected={t.room == room}>
+                  {t.room}
+                </option>
               ))}
             </Select>
           </FormControl>
           <Button
-              leftIcon={<CheckIcon />}
-              colorScheme={"blue"}
-              m={2}
-              onClick={onSaveButtonClick}
-          >Сохранить</Button>
+            leftIcon={<CheckIcon />}
+            colorScheme={"blue"}
+            m={2}
+            onClick={onSaveButtonClick}
+          >
+            Сохранить
+          </Button>
         </form>
       </Flex>
     );

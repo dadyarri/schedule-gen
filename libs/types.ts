@@ -1,4 +1,5 @@
 export type TimeTable = {
+  id: number;
   lesson: string;
   room: string;
   type: string;

@@ -242,8 +242,8 @@ const getTimetableByDayAndWeek = (
   const timetable: TimeTable[] = [];
 
   if (lessonIds != undefined) {
-    lessonIds.map((id: number) => {
-      timetable.push(buildTimetable(schedule, id, week));
+    lessonIds.map((id: number[]) => {
+      timetable.push(buildTimetable(schedule, id[0], week));
     });
   }
 
@@ -256,6 +256,7 @@ const buildTimetable = (
   week: number
 ): TimeTable => {
   return {
+    id: timetableId,
     lesson: getLessonName(schedule, timetableId).lesson,
     room: getRoomName(schedule, timetableId).room,
     type: getTypeName(schedule, timetableId).type,
@@ -276,6 +277,29 @@ function decodeData(str: string) {
   return decodeURIComponent(str);
 }
 
+const getTimeTableById = (
+  schedule: {
+    timetableList: [
+      {
+        roomId: number;
+        teacherId: number;
+        typeId: number;
+        lessonId: number;
+        timeId: number;
+        id: number;
+      }
+    ];
+  },
+  timetableId: number
+) => {
+  for (let i = 0; i < schedule.timetableList.length; i++) {
+    if (schedule.timetableList[i].id === timetableId) {
+      return schedule.timetableList[i];
+    }
+  }
+  return null;
+};
+
 export {
   dayNumberToShortName,
   getDistinctDays,
@@ -288,5 +312,6 @@ export {
   getListOfTeachers,
   getListOfRooms,
   encodeData,
-  decodeData
+  decodeData,
+  getTimeTableById
 };
