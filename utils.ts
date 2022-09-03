@@ -115,6 +115,20 @@ const getTime = (schedule: object, timetableId: number): { time: string } => {
   return time;
 };
 
+const getListOfTime = (schedule: object): { time: string; id: number }[] => {
+  let times;
+
+  try {
+    times = jsonata(
+      `timeList.{"time": start & " - " & end, "id": id}`
+    ).evaluate(schedule);
+  } catch (TypeError) {
+    times = [];
+  }
+
+  return times;
+};
+
 const getDateStart = (
   schedule: object,
   timetableId: number
@@ -198,10 +212,21 @@ const buildTimetable = (
   };
 };
 
+function encodeData(str: string) {
+  return encodeURIComponent(str);
+}
+
+function decodeData(str: string) {
+  return decodeURIComponent(str);
+}
+
 export {
   dayNumberToShortName,
   getDistinctDays,
   getDistinctWeeks,
   buildTimetable,
-  getTimetableByDayAndWeek
+  getTimetableByDayAndWeek,
+  getListOfTime,
+  encodeData,
+  decodeData
 };

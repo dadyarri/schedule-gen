@@ -3,7 +3,8 @@ import Layout from "../components/layout";
 import {
   Box,
   Button,
-  ButtonGroup, Flex,
+  ButtonGroup,
+  Flex,
   FormControl,
   Heading,
   HStack,
@@ -33,6 +34,7 @@ import {
 import Ajv from "ajv";
 import Schedule from "../components/schedule";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { decodeData, encodeData } from "../utils";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -40,14 +42,6 @@ const Home: NextPage = () => {
   const toast = useToast();
 
   const [buttonIsLoading, setButtonIsLoading] = React.useState(false);
-
-  function encodeData(str: string) {
-    return encodeURIComponent(str);
-  }
-
-  function decodeData(str: string) {
-    return decodeURIComponent(str);
-  }
 
   const uploadSchedule = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -204,20 +198,20 @@ const Home: NextPage = () => {
             <FormControl>
               <Flex>
                 <Input
-                    type={"file"}
-                    accept={".zip"}
-                    size={"sm"}
-                    name={"file"}
-                    id={"file-input"}
-                    variant={"flushed"}
-                    mr={10}
+                  type={"file"}
+                  accept={".zip"}
+                  size={"sm"}
+                  name={"file"}
+                  id={"file-input"}
+                  variant={"flushed"}
+                  mr={10}
                 />
                 <Button
-                    leftIcon={<AiOutlineUpload />}
-                    colorScheme="blue"
-                    type={"submit"}
-                    isLoading={buttonIsLoading}
-                    loadingText="Обработка..."
+                  leftIcon={<AiOutlineUpload />}
+                  colorScheme="blue"
+                  type={"submit"}
+                  isLoading={buttonIsLoading}
+                  loadingText="Обработка..."
                 >
                   Открыть
                 </Button>
