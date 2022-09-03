@@ -129,6 +129,48 @@ const getListOfTime = (schedule: object): { time: string; id: number }[] => {
   return times;
 };
 
+const getListOfSubjects = (schedule: object): { subject: string; id: number }[] => {
+  let subjects;
+
+  try {
+    subjects = jsonata(
+      `lessonList.{"subject": name, "id": id}`
+    ).evaluate(schedule);
+  } catch (TypeError) {
+    subjects = [];
+  }
+
+  return subjects;
+};
+
+const getListOfTypes = (schedule: object): { type: string; id: number }[] => {
+  let types;
+
+  try {
+    types = jsonata(
+      `typeList.{"type": name, "id": id}`
+    ).evaluate(schedule);
+  } catch (TypeError) {
+    types = [];
+  }
+
+  return types;
+};
+
+const getListOfTeachers = (schedule: object): { teacher: string; id: number }[] => {
+  let teachers;
+
+  try {
+    teachers = jsonata(
+      `teacherList.{"teacher": name, "id": id}`
+    ).evaluate(schedule);
+  } catch (TypeError) {
+    teachers = [];
+  }
+
+  return teachers;
+};
+
 const getDateStart = (
   schedule: object,
   timetableId: number
@@ -227,6 +269,9 @@ export {
   buildTimetable,
   getTimetableByDayAndWeek,
   getListOfTime,
+  getListOfSubjects,
+  getListOfTypes,
+    getListOfTeachers,
   encodeData,
   decodeData
 };
