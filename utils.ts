@@ -105,11 +105,11 @@ const getDateEnd = (
   ).evaluate(schedule);
 };
 
-const getColor = (schedule: object, timetableId: number): {color: number} => {
+const getColor = (schedule: object, timetableId: number): { color: number } => {
   return jsonata(
     `timetableList@$T.lessonList@$L[$T.lessonId = $L.id][$T.id=${timetableId}]{"color": $L.color}`
   ).evaluate(schedule);
-}
+};
 
 const getTimetableByDayAndWeek = (
   schedule: object,
