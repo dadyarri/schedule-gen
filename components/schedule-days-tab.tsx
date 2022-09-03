@@ -1,12 +1,11 @@
-import {Tab, TabList, TabPanel, TabPanels, Tabs} from "@chakra-ui/react";
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import {
-  buildTimetable,
   dayNumberToShortName,
   getDistinctDays,
   getDistinctWeeks,
   getTimetableByDayAndWeek
 } from "../utils";
-import {ParsedSchedule, TimeTable} from "../libs/types";
+import { ParsedSchedule, TimeTable } from "../libs/types";
 import ScheduleCard from "./schedule-card";
 import moment from "moment";
 
@@ -20,41 +19,70 @@ const ScheduleDaysTab = ({ json }: Props) => {
 
   const getCurrentWeek = (): number => {
     return moment().week() % 2;
-  }
+  };
 
-  const ifCurrentDateIsInRange = (dateStart: string, dateEnd: string): boolean => {
+  const ifCurrentDateIsInRange = (
+    dateStart: string,
+    dateEnd: string
+  ): boolean => {
     const currentDate = moment();
     const startDate = moment(dateStart);
     const endDate = moment(dateEnd);
 
     return currentDate.isBetween(startDate, endDate);
-  }
+  };
+
+  const generateRandomString = (length: number): string => {
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let result = "";
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+
+    return result;
+  };
 
   return (
     <Tabs variant={"solid-rounded"}>
       <TabList>
         {days.map((day: number) => (
-          <Tab key={day}>{dayNumberToShortName(day)}</Tab>
+          <Tab key={generateRandomString(5)}>{dayNumberToShortName(day)}</Tab>
         ))}
       </TabList>
 
       <TabPanels>
         {days.map((day: number) => (
-          <TabPanel>
-            <Tabs variant={"soft-rounded"} m={3} defaultIndex={getCurrentWeek()}>
-              <TabList>
+          <TabPanel key={generateRandomString(5)}>
+            <Tabs
+              variant={"soft-rounded"}
+              m={3}
+              defaultIndex={getCurrentWeek()}
+            >
+              <TabList key={generateRandomString(5)}>
                 {weeks.map((week: number) => (
-                  <Tab key={week}>Неделя {week + 1}</Tab>
+                  <Tab key={generateRandomString(5)}>Неделя {week + 1}</Tab>
                 ))}
               </TabList>
               <TabPanels>
                 {weeks.map((week: number) => {
-                  const timetable: TimeTable[] = getTimetableByDayAndWeek(json, day, week);
+                  const timetable: TimeTable[] = getTimetableByDayAndWeek(
+                    json,
+                    day,
+                    week
+                  );
                   return (
-                    <TabPanel key={week}>
+                    <TabPanel key={generateRandomString(5)}>
                       {timetable.map(t => {
                         return (
-                            ifCurrentDateIsInRange(t.dateStart, t.dateEnd) && (<ScheduleCard {...t} />)
+                          ifCurrentDateIsInRange(t.dateStart, t.dateEnd) && (
+                            <ScheduleCard
+                              {...t}
+                              key={generateRandomString(5)}
+                            />
+                          )
                         );
                       })}
                     </TabPanel>
