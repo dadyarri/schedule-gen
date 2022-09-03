@@ -1,7 +1,7 @@
-import {Button, Divider, Flex, Text} from "@chakra-ui/react";
-import {TimeTable} from "../libs/types";
-import {useState} from "react";
-import {EditIcon} from "@chakra-ui/icons";
+import { Button, Divider, Flex, Text } from "@chakra-ui/react";
+import { TimeTable } from "../libs/types";
+import { useState } from "react";
+import { EditIcon } from "@chakra-ui/icons";
 
 const ScheduleCard = ({
   lesson,
@@ -60,21 +60,28 @@ const ScheduleCard = ({
 
   const onEditButtonClick = () => {
     setCardState(true);
-  }
+  };
 
   if (cardState) {
     return <></>;
   } else {
     return (
-      <Flex border={"1px"} borderRadius={"5px"} p={2} m={2} align={"left"} direction={"column"}>
+      <Flex
+        border={"1px"}
+        borderRadius={"5px"}
+        p={2}
+        m={2}
+        align={"left"}
+        direction={"column"}
+      >
         <Button
-            leftIcon={<EditIcon/>}
-            variant={"ghost"}
-            alignSelf='flex-end'
-            position='relative'
-            right={-1}
-            top={-1}
-            onClick={onEditButtonClick}
+          leftIcon={<EditIcon />}
+          variant={"ghost"}
+          alignSelf="flex-end"
+          position="relative"
+          right={-1}
+          top={-1}
+          onClick={onEditButtonClick}
         />
         {color ? (
           <Divider
