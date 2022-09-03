@@ -1,14 +1,15 @@
 export type TimeTable = {
   id: number;
   lesson: string;
-  room: string;
-  type: string;
-  teacher: string;
+  room?: string;
+  type?: string;
+  teacher?: string;
   time: string;
-  week: number;
-  dateStart: string;
-  dateEnd: string;
+  week?: number;
+  dateStart?: string;
+  dateEnd?: string;
   color?: number;
+  isInEditMode?: boolean;
 };
 
 export type DayWeekItem = {
@@ -24,5 +25,6 @@ export type TimetableItem = {
 };
 
 export type ParsedSchedule = {
+  timetableList: TimeTable[];
   dayWeekList: DayWeekItem[];
 };
