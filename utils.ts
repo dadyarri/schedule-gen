@@ -129,13 +129,15 @@ const getListOfTime = (schedule: object): { time: string; id: number }[] => {
   return times;
 };
 
-const getListOfSubjects = (schedule: object): { subject: string; id: number }[] => {
+const getListOfSubjects = (
+  schedule: object
+): { subject: string; id: number }[] => {
   let subjects;
 
   try {
-    subjects = jsonata(
-      `lessonList.{"subject": name, "id": id}`
-    ).evaluate(schedule);
+    subjects = jsonata(`lessonList.{"subject": name, "id": id}`).evaluate(
+      schedule
+    );
   } catch (TypeError) {
     subjects = [];
   }
@@ -147,9 +149,7 @@ const getListOfTypes = (schedule: object): { type: string; id: number }[] => {
   let types;
 
   try {
-    types = jsonata(
-      `typeList.{"type": name, "id": id}`
-    ).evaluate(schedule);
+    types = jsonata(`typeList.{"type": name, "id": id}`).evaluate(schedule);
   } catch (TypeError) {
     types = [];
   }
@@ -157,18 +157,32 @@ const getListOfTypes = (schedule: object): { type: string; id: number }[] => {
   return types;
 };
 
-const getListOfTeachers = (schedule: object): { teacher: string; id: number }[] => {
+const getListOfTeachers = (
+  schedule: object
+): { teacher: string; id: number }[] => {
   let teachers;
 
   try {
-    teachers = jsonata(
-      `teacherList.{"teacher": name, "id": id}`
-    ).evaluate(schedule);
+    teachers = jsonata(`teacherList.{"teacher": name, "id": id}`).evaluate(
+      schedule
+    );
   } catch (TypeError) {
     teachers = [];
   }
 
   return teachers;
+};
+
+const getListOfRooms = (schedule: object): { room: string; id: number }[] => {
+  let rooms;
+
+  try {
+    rooms = jsonata(`roomList.{"room": name, "id": id}`).evaluate(schedule);
+  } catch (TypeError) {
+    rooms = [];
+  }
+
+  return rooms;
 };
 
 const getDateStart = (
@@ -271,7 +285,8 @@ export {
   getListOfTime,
   getListOfSubjects,
   getListOfTypes,
-    getListOfTeachers,
+  getListOfTeachers,
+  getListOfRooms,
   encodeData,
   decodeData
 };

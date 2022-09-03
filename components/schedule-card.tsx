@@ -12,8 +12,15 @@ import {
 import { TimeTable } from "../libs/types";
 import { useState } from "react";
 import { CheckIcon, EditIcon } from "@chakra-ui/icons";
-import {decodeData, getListOfSubjects, getListOfTeachers, getListOfTime, getListOfTypes} from "../utils";
-import { useRouter } from 'next/router'
+import {
+  decodeData,
+  getListOfRooms,
+  getListOfSubjects,
+  getListOfTeachers,
+  getListOfTime,
+  getListOfTypes
+} from "../utils";
+import { useRouter } from "next/router";
 
 const ScheduleCard = ({
   lesson,
@@ -23,7 +30,6 @@ const ScheduleCard = ({
   time,
   color
 }: TimeTable) => {
-
   const router = useRouter();
 
   const [cardState, setCardState] = useState(false);
@@ -99,20 +105,22 @@ const ScheduleCard = ({
             Редактирование
           </Text>
           <Button
-              leftIcon={<CheckIcon />}
-              variant={"ghost"}
-              alignSelf="flex-end"
-              position="relative"
-              right={-1}
-              top={-1}
-              onClick={onSaveButtonClick}
+            leftIcon={<CheckIcon />}
+            variant={"ghost"}
+            alignSelf="flex-end"
+            position="relative"
+            right={-1}
+            top={-1}
+            onClick={onSaveButtonClick}
           />
         </HStack>
         <FormControl my={2}>
           <FormLabel>Время</FormLabel>
           <Select>
             {getListOfTime(json).map(t => (
-              <option value={t.id} selected={t.time == time}>{t.time}</option>
+              <option value={t.id} selected={t.time == time}>
+                {t.time}
+              </option>
             ))}
           </Select>
         </FormControl>
@@ -120,7 +128,9 @@ const ScheduleCard = ({
           <FormLabel>Предмет</FormLabel>
           <Select>
             {getListOfSubjects(json).map(t => (
-              <option value={t.id} selected={t.subject == lesson}>{t.subject}</option>
+              <option value={t.id} selected={t.subject == lesson}>
+                {t.subject}
+              </option>
             ))}
           </Select>
         </FormControl>
@@ -128,7 +138,9 @@ const ScheduleCard = ({
           <FormLabel>Тип занятия</FormLabel>
           <Select>
             {getListOfTypes(json).map(t => (
-              <option value={t.id} selected={t.type == type}>{t.type}</option>
+              <option value={t.id} selected={t.type == type}>
+                {t.type}
+              </option>
             ))}
           </Select>
         </FormControl>
@@ -136,7 +148,19 @@ const ScheduleCard = ({
           <FormLabel>Преподаватель</FormLabel>
           <Select>
             {getListOfTeachers(json).map(t => (
-              <option value={t.id} selected={t.teacher == teacher}>{t.teacher}</option>
+              <option value={t.id} selected={t.teacher == teacher}>
+                {t.teacher}
+              </option>
+            ))}
+          </Select>
+        </FormControl>
+        <FormControl my={2}>
+          <FormLabel>Аудитория</FormLabel>
+          <Select>
+            {getListOfRooms(json).map(t => (
+              <option value={t.id} selected={t.room == room}>
+                {t.room}
+              </option>
             ))}
           </Select>
         </FormControl>
