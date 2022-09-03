@@ -1,5 +1,7 @@
-import { Divider, Text, VStack } from "@chakra-ui/react";
-import { TimeTable } from "../libs/types";
+import {Button, Divider, Flex, Text} from "@chakra-ui/react";
+import {TimeTable} from "../libs/types";
+import {useState} from "react";
+import {EditIcon} from "@chakra-ui/icons";
 
 const ScheduleCard = ({
   lesson,
@@ -9,6 +11,8 @@ const ScheduleCard = ({
   time,
   color
 }: TimeTable) => {
+  const [cardState, setCardState] = useState(false);
+
   const getColorName = (color: number): string => {
     switch (color) {
       case 0:
@@ -54,34 +58,51 @@ const ScheduleCard = ({
     }
   };
 
-  return (
-    <VStack border={"1px"} borderRadius={"5px"} p={2} m={2} align={"left"}>
-      {color ? (
-        <Divider
-          orientation="vertical"
-          m={1}
-          mb={3}
-          borderWidth={"3px"}
-          borderRadius={"10px"}
-          borderColor={getColorName(color)}
+  const onEditButtonClick = () => {
+    setCardState(true);
+  }
+
+  if (cardState) {
+    return <></>;
+  } else {
+    return (
+      <Flex border={"1px"} borderRadius={"5px"} p={2} m={2} align={"left"} direction={"column"}>
+        <Button
+            leftIcon={<EditIcon/>}
+            variant={"ghost"}
+            alignSelf='flex-end'
+            position='relative'
+            right={-1}
+            top={-1}
+            onClick={onEditButtonClick}
         />
-      ) : null}
-      <Text fontWeight={"bold"} fontSize={"20px"}>
-        {time}
-      </Text>
-      {type ? (
-        <Text fontWeight={"semibold"} fontSize={"19px"}>
-          {lesson} ({type})
+        {color ? (
+          <Divider
+            orientation="vertical"
+            m={1}
+            mb={3}
+            borderWidth={"3px"}
+            borderRadius={"10px"}
+            borderColor={getColorName(color)}
+          />
+        ) : null}
+        <Text fontWeight={"bold"} fontSize={"20px"}>
+          {time}
         </Text>
-      ) : (
-        <Text fontWeight={"semibold"} fontSize={"19px"}>
-          {lesson}
-        </Text>
-      )}
-      {teacher ? <Text>{teacher}</Text> : null}
-      {room ? <Text>{room}</Text> : null}
-    </VStack>
-  );
+        {type ? (
+          <Text fontWeight={"semibold"} fontSize={"19px"}>
+            {lesson} ({type})
+          </Text>
+        ) : (
+          <Text fontWeight={"semibold"} fontSize={"19px"}>
+            {lesson}
+          </Text>
+        )}
+        {teacher ? <Text>{teacher}</Text> : null}
+        {room ? <Text>{room}</Text> : null}
+      </Flex>
+    );
+  }
 };
 
 export default ScheduleCard;
