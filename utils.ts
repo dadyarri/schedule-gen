@@ -117,7 +117,7 @@ const getTimetableByDayAndWeek = (
   week: number
 ): TimeTable[] => {
   const lessonIds = jsonata(
-    `dayWeekList[day=${day}][week=${week}].timetableId`
+    `dayWeekList[day=${day}][week=${week}].[timetableId]`
   ).evaluate(schedule);
 
   const timetable: TimeTable[] = [];
