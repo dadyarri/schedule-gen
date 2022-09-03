@@ -62,8 +62,22 @@ const ScheduleCard = ({
     setCardState(true);
   };
 
+  const onSaveButtonClick = () => {
+    setCardState(false);
+  }
+
   if (cardState) {
-    return <></>;
+    return <Flex border={"1px"} borderRadius={"5px"} p={2} m={2} align={"left"} direction={"column"}>
+      <Button
+          leftIcon={<CheckIcon />}
+          variant={"ghost"}
+          alignSelf="flex-end"
+          position="relative"
+          right={-1}
+          top={-1}
+          onClick={onSaveButtonClick}
+      />
+    </Flex>;
   } else {
     return (
       <Flex
