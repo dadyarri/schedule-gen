@@ -49,9 +49,17 @@ const getLessonName = (
   schedule: object,
   timetableId: number
 ): { lesson: string } => {
-  return jsonata(
-    `timetableList@$T.lessonList@$L[$T.lessonId = $L.id][$T.id=${timetableId}]{"lesson": $L.name}`
-  ).evaluate(schedule);
+
+  let lessonName;
+
+  try {
+    lessonName = jsonata(
+        `timetableList@$T.lessonList@$L[$T.lessonId = $L.id][$T.id=${timetableId}]{"lesson": $L.name}`
+    ).evaluate(schedule);
+  } catch (TypeError) {
+    lessonName = { lesson: "" };
+  }
+  return lessonName;
 };
 
 const getRoomName = (
