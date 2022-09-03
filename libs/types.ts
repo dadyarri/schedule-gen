@@ -5,6 +5,8 @@ export type TimeTable = {
   teacher: string;
   time: string;
   week: number;
+  dateStart: string;
+  dateEnd: string;
 };
 
 export type DayWeekItem = {
