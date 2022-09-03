@@ -31,11 +31,12 @@ const ScheduleCard = ({
   type,
   teacher,
   time,
-  color
+  color,
+  isInEditMode = false
 }: TimeTable) => {
   const router = useRouter();
 
-  const [cardState, setCardState] = useState(false);
+  const [cardState, setCardState] = useState(isInEditMode);
   const [saveButtonIsLoading, setSaveButtonIsLoading] = React.useState(false);
   const [deleteButtonIsLoading, setDeleteButtonIsLoading] =
     React.useState(false);
