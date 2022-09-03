@@ -7,7 +7,8 @@ import {
   Tabs
 } from "@chakra-ui/react";
 import {
-  dayNumberToShortName, generateRandomString,
+  dayNumberToShortName,
+  generateRandomString,
   getDistinctDays,
   getDistinctWeeks,
   getTimetableByDayAndWeek
