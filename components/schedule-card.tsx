@@ -56,14 +56,16 @@ const ScheduleCard = ({
 
   return (
     <VStack border={"1px"} borderRadius={"5px"} p={2} m={2} align={"left"}>
-      { color ? <Divider
-        orientation="vertical"
-        m={1}
-        mb={3}
-        borderWidth={"3px"}
-        borderRadius={"10px"}
-        borderColor={getColorName(color)}
-      /> : null }
+      {color ? (
+        <Divider
+          orientation="vertical"
+          m={1}
+          mb={3}
+          borderWidth={"3px"}
+          borderRadius={"10px"}
+          borderColor={getColorName(color)}
+        />
+      ) : null}
       <Text fontWeight={"bold"} fontSize={"20px"}>
         {time}
       </Text>
@@ -76,8 +78,8 @@ const ScheduleCard = ({
           {lesson}
         </Text>
       )}
-      { teacher ? <Text>{teacher}</Text> : null }
-      { room ? <Text>{room}</Text> : null }
+      {teacher ? <Text>{teacher}</Text> : null}
+      {room ? <Text>{room}</Text> : null}
     </VStack>
   );
 };

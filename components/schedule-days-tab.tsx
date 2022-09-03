@@ -25,7 +25,6 @@ const ScheduleDaysTab = ({ json }: Props) => {
     dateStart: string,
     dateEnd: string
   ): boolean => {
-
     if (!dateStart || !dateEnd) {
       return true;
     }
@@ -82,7 +81,7 @@ const ScheduleDaysTab = ({ json }: Props) => {
                     <TabPanel key={generateRandomString(5)}>
                       {timetable.map(t => {
                         return (
-                            ifCurrentDateIsInRange(t.dateStart, t.dateEnd) && (
+                          ifCurrentDateIsInRange(t.dateStart, t.dateEnd) && (
                             <ScheduleCard
                               {...t}
                               key={generateRandomString(5)}

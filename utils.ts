@@ -1,4 +1,4 @@
-import {DayWeekItem, TimeTable, TimetableItem} from "./libs/types";
+import { DayWeekItem, TimeTable, TimetableItem } from "./libs/types";
 import jsonata from "jsonata";
 import _ from "underscore";
 
