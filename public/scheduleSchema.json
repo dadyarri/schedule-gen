@@ -125,6 +125,11 @@
         },
         "name": {
           "type": "string"
+        },
+        "color": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16
         }
       },
       "required": [
@@ -192,6 +197,11 @@
       "properties": {
         "id": {
           "$ref": "#/definitions/nonNegativeInteger"
+        },
+        "color": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16
         },
         "lessonId": {
           "$ref": "#/definitions/nonNegativeInteger"
@@ -313,16 +323,16 @@
     "gradeListItem": {
       "type": "object",
       "properties": {
-        "gradeId": {
+        "id": {
           "$ref": "#/definitions/nonNegativeInteger"
         },
-        "gradeValue": {
+        "value": {
           "type": "integer",
           "minimum": -100,
           "maximum": 1000
         }
       },
-      "required": ["gradeId", "gradeValue"]
+      "required": ["id", "value"]
     },
     "gradeStatisticListItem": {
       "type": "object",
@@ -375,7 +385,7 @@
           "$ref": "#/definitions/nonNegativeInteger"
         }
       },
-      "required": ["id", "name", "status", "lessonId", "typeId"]
+      "required": ["id", "name", "status", "lessonId"]
     },
     "imageListItem": {
       "type": "object",
@@ -387,8 +397,7 @@
           "$ref": "#/definitions/nonNegativeInteger"
         },
         "uri": {
-          "type": "string",
-          "pattern": "^file:///[-a-zA-Z0-9@:%._+~#=/]*$"
+          "type": "string"
         }
       },
       "required": ["id", "homeworkId", "uri"]
