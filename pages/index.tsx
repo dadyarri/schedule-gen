@@ -3,7 +3,7 @@ import Layout from "../components/layout";
 import {
   Box,
   Button,
-  ButtonGroup,
+  ButtonGroup, Flex,
   FormControl,
   Heading,
   HStack,
@@ -202,22 +202,26 @@ const Home: NextPage = () => {
         <Box mt={10}>
           <form method={"post"} onSubmit={uploadSchedule}>
             <FormControl>
-              <Input
-                type={"file"}
-                accept={".zip"}
-                size={"sm"}
-                name={"file"}
-                id={"file-input"}
-              />
-              <Button
-                leftIcon={<AiOutlineUpload />}
-                colorScheme="blue"
-                type={"submit"}
-                isLoading={buttonIsLoading}
-                loadingText="Обработка..."
-              >
-                Открыть
-              </Button>
+              <Flex>
+                <Input
+                    type={"file"}
+                    accept={".zip"}
+                    size={"sm"}
+                    name={"file"}
+                    id={"file-input"}
+                    variant={"flushed"}
+                    mr={10}
+                />
+                <Button
+                    leftIcon={<AiOutlineUpload />}
+                    colorScheme="blue"
+                    type={"submit"}
+                    isLoading={buttonIsLoading}
+                    loadingText="Обработка..."
+                >
+                  Открыть
+                </Button>
+              </Flex>
             </FormControl>
           </form>
           <Text fontSize={"xs"} color={"gray.500"}>
