@@ -10,7 +10,7 @@ import {
   Text
 } from "@chakra-ui/react";
 import { TimeTable } from "../libs/types";
-import { useState } from "react";
+import React, { useState } from "react";
 import { CheckIcon, EditIcon } from "@chakra-ui/icons";
 import {
   decodeData, encodeData,
@@ -35,6 +35,7 @@ const ScheduleCard = ({
   const router = useRouter();
 
   const [cardState, setCardState] = useState(false);
+  const [buttonIsLoading, setButtonIsLoading] = React.useState(false);
   const schedule = router.query["schedule"] as string;
 
   const json = JSON.parse(decodeData(schedule));
@@ -89,6 +90,8 @@ const ScheduleCard = ({
   };
 
   const onSaveButtonClick = async () => {
+    setButtonIsLoading(true);
+
     const newJson = Object.assign({}, json);
 
     const timeSelect = document.getElementById(
@@ -109,8 +112,6 @@ const ScheduleCard = ({
 
     const tt = getTimeTableById(newJson, id);
 
-    console.log(tt);
-
     if (tt) {
       tt.timeId = parseInt(timeSelect.value);
       tt.lessonId = parseInt(subjectSelect.value);
@@ -121,6 +122,8 @@ const ScheduleCard = ({
       await router.push("/?schedule=" + encodeData(JSON.stringify(newJson)), undefined, { shallow: true });
       setCardState(false);
     }
+
+    setButtonIsLoading(false);
   };
 
   if (cardState) {
@@ -194,6 +197,8 @@ const ScheduleCard = ({
             colorScheme={"blue"}
             m={2}
             onClick={onSaveButtonClick}
+            isLoading={buttonIsLoading}
+            loadingText={"Сохранение..."}
           >
             Сохранить
           </Button>
