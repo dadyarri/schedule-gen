@@ -1,7 +1,7 @@
-import {Box, Button, Divider, Flex, HStack, Text} from "@chakra-ui/react";
-import {TimeTable} from "../libs/types";
-import {useState} from "react";
-import {CheckIcon, EditIcon} from "@chakra-ui/icons";
+import { Box, Button, Divider, Flex, HStack, Text } from "@chakra-ui/react";
+import { TimeTable } from "../libs/types";
+import { useState } from "react";
+import { CheckIcon, EditIcon } from "@chakra-ui/icons";
 
 const ScheduleCard = ({
   lesson,
@@ -64,11 +64,19 @@ const ScheduleCard = ({
 
   const onSaveButtonClick = () => {
     setCardState(false);
-  }
+  };
 
   if (cardState) {
-    return <Flex border={"1px"} borderRadius={"5px"} p={2} m={2} align={"left"} direction={"column"}>
-      <Button
+    return (
+      <Flex
+        border={"1px"}
+        borderRadius={"5px"}
+        p={2}
+        m={2}
+        align={"left"}
+        direction={"column"}
+      >
+        <Button
           leftIcon={<CheckIcon />}
           variant={"ghost"}
           alignSelf="flex-end"
@@ -76,8 +84,9 @@ const ScheduleCard = ({
           right={-1}
           top={-1}
           onClick={onSaveButtonClick}
-      />
-    </Flex>;
+        />
+      </Flex>
+    );
   } else {
     return (
       <Flex
@@ -90,23 +99,25 @@ const ScheduleCard = ({
       >
         <HStack>
           {color ? (
-              <Divider
-                  orientation="horizontal"
-                  m={1}
-                  mb={3}
-                  borderWidth={"3px"}
-                  borderRadius={"10px"}
-                  borderColor={getColorName(color)}
-              />
-          ) : <Box alignSelf={"flex-start"} width={"xl"}></Box>}
+            <Divider
+              orientation="horizontal"
+              m={1}
+              mb={3}
+              borderWidth={"3px"}
+              borderRadius={"10px"}
+              borderColor={getColorName(color)}
+            />
+          ) : (
+            <Box alignSelf={"flex-start"} width={"xl"}></Box>
+          )}
           <Button
-              leftIcon={<EditIcon />}
-              variant={"ghost"}
-              alignSelf="flex-end"
-              position="relative"
-              right={-1}
-              top={-1}
-              onClick={onEditButtonClick}
+            leftIcon={<EditIcon />}
+            variant={"ghost"}
+            alignSelf="flex-end"
+            position="relative"
+            right={-1}
+            top={-1}
+            onClick={onEditButtonClick}
           />
         </HStack>
         <Text fontWeight={"bold"} fontSize={"20px"}>
