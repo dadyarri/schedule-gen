@@ -22,6 +22,14 @@ const ScheduleDaysTab = ({ json }: Props) => {
     return moment().week() % 2;
   }
 
+  const ifCurrentDateIsInRange = (dateStart: string, dateEnd: string): boolean => {
+    const currentDate = moment();
+    const startDate = moment(dateStart);
+    const endDate = moment(dateEnd);
+
+    return currentDate.isBetween(startDate, endDate);
+  }
+
   return (
     <Tabs variant={"solid-rounded"}>
       <TabList>
@@ -45,8 +53,9 @@ const ScheduleDaysTab = ({ json }: Props) => {
                   return (
                     <TabPanel key={week}>
                       {timetable.map(t => {
+                        const struct = buildTimetable(json, t, week);
                         return (
-                          <ScheduleCard {...buildTimetable(json, t, week)} />
+                            ifCurrentDateIsInRange(struct.dateStart, struct.dateEnd) && (<ScheduleCard {...struct} />)
                         );
                       })}
                     </TabPanel>
