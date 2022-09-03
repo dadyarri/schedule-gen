@@ -94,15 +94,20 @@ const ScheduleCard = ({
         align={"left"}
         direction={"column"}
       >
-        <Button
-          leftIcon={<CheckIcon />}
-          variant={"ghost"}
-          alignSelf="flex-end"
-          position="relative"
-          right={-1}
-          top={-1}
-          onClick={onSaveButtonClick}
-        />
+        <HStack>
+          <Text width={"xl"} fontSize={"20px"} fontWeight={"bold"}>
+            Редактирование
+          </Text>
+          <Button
+              leftIcon={<CheckIcon />}
+              variant={"ghost"}
+              alignSelf="flex-end"
+              position="relative"
+              right={-1}
+              top={-1}
+              onClick={onSaveButtonClick}
+          />
+        </HStack>
         <FormControl my={2}>
           <FormLabel>Время</FormLabel>
           <Select>
