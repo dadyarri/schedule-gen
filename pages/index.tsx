@@ -2,7 +2,8 @@ import type { NextPage } from "next";
 import Layout from "../components/layout";
 import {
   Box,
-  Button, ButtonGroup,
+  Button,
+  ButtonGroup,
   FormControl,
   Heading,
   Input,
@@ -154,16 +155,16 @@ const Home: NextPage = () => {
           <Schedule schedule={schedule} />
           <ButtonGroup>
             <Button
-                leftIcon={<AiOutlineClear />}
-                colorScheme={"blue"}
-                onClick={clearSchedule}
+              leftIcon={<AiOutlineClear />}
+              colorScheme={"blue"}
+              onClick={clearSchedule}
             >
               Очистить
             </Button>
             <Button
-                leftIcon={<AiOutlineDownload />}
-                colorScheme={"blue"}
-                onClick={downloadSchedule}
+              leftIcon={<AiOutlineDownload />}
+              colorScheme={"blue"}
+              onClick={downloadSchedule}
             >
               Скачать
             </Button>
