@@ -4,7 +4,7 @@ import {
   ParsedRoom,
   ParsedTeacher,
   ParsedTime,
-  ParsedType,
+  ParsedType, RawDayWeek, RawTimeTable,
   TimeTable,
   TimetableItem
 } from "./libs/types";
@@ -276,7 +276,7 @@ const decodeData = (str: string): string => {
   return JSONCrush.uncrush(str);
 };
 
-const getTimeTableById = (schedule: TimeTable[], timetableId: number): TimeTable | undefined => {
+const getTimeTableById = (schedule: RawTimeTable[], timetableId: number): RawTimeTable | undefined => {
   for (let i = 0; i < schedule.length; i++) {
     if (schedule[i].id === timetableId) {
       return schedule[i];
@@ -296,7 +296,7 @@ const generateRandomString = (length: number): string => {
   return result;
 };
 
-const getNextId = (json: TimeTable[] | DayWeekItem[]): number => {
+const getNextId = (json: RawTimeTable[] | RawDayWeek[]): number => {
   let max = 0;
   json.forEach(item => {
     if (item.id > max) {

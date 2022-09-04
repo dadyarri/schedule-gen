@@ -1,30 +1,20 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  FormControl,
-  FormLabel,
-  HStack,
-  IconButton,
-  Select,
-  Text
-} from "@chakra-ui/react";
-import { TimeTable } from "../libs/types";
-import React, { useState } from "react";
-import { CheckIcon, CloseIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import {Box, Button, Divider, Flex, FormControl, FormLabel, HStack, IconButton, Select, Text} from "@chakra-ui/react";
+import {RawSchedule, RawTimeTable, TimeTable} from "../libs/types";
+import React, {useState} from "react";
+import {CheckIcon, CloseIcon, DeleteIcon, EditIcon} from "@chakra-ui/icons";
 import {
   decodeData,
   encodeData,
   generateRandomString,
+  getListOfLessons,
   getListOfRooms,
-  getListOfSubjects,
   getListOfTeachers,
   getListOfTime,
   getListOfTypes,
+  getNextId,
   getTimeTableById
 } from "../utils";
-import { useRouter } from "next/router";
+import {useRouter} from "next/router";
 
 const ScheduleCard = ({
   id,
@@ -44,7 +34,7 @@ const ScheduleCard = ({
     React.useState(false);
   const schedule = router.query["schedule"] as string;
 
-  const json = JSON.parse(decodeData(schedule));
+  const json: RawSchedule = JSON.parse(decodeData(schedule));
 
   const getColorName = (color: number): string => {
     switch (color) {
@@ -138,7 +128,7 @@ const ScheduleCard = ({
       "roomSelect"
     ) as HTMLSelectElement;
 
-    const tt = getTimeTableById(newJson, id);
+    const tt = getTimeTableById(newJson.timetableList, id);
 
     if (tt) {
       tt.timeId = parseInt(timeSelect.value);
@@ -146,6 +136,30 @@ const ScheduleCard = ({
       tt.typeId = parseInt(typeSelect.value);
       tt.teacherId = parseInt(teacherSelect.value);
       tt.roomId = parseInt(roomSelect.value);
+
+      await router.push(
+        "/?schedule=" + encodeData(JSON.stringify(newJson)),
+        undefined,
+        { shallow: true }
+      );
+      setCardState(false);
+    } else {
+      const newTimeTable: RawTimeTable = {
+        id: getNextId(json.timetableList),
+        timeId: parseInt(timeSelect.value),
+        lessonId: parseInt(subjectSelect.value),
+        typeId: parseInt(typeSelect.value),
+        teacherId: parseInt(teacherSelect.value),
+        roomId: parseInt(roomSelect.value)
+      };
+
+      newJson.timetableList.push(newTimeTable);
+      newJson.dayWeekList.push({
+        id: getNextId(json.dayWeekList),
+        day: 0,
+        week: 0,
+        timetableId: newTimeTable.id
+      });
 
       await router.push(
         "/?schedule=" + encodeData(JSON.stringify(newJson)),
@@ -195,13 +209,13 @@ const ScheduleCard = ({
           <FormControl my={2}>
             <FormLabel>Предмет</FormLabel>
             <Select id={"subjectSelect"}>
-              {getListOfSubjects(json).map(t => (
+              {getListOfLessons(json).map(t => (
                 <option
                   value={t.id}
-                  selected={t.subject == lesson}
+                  selected={t.lesson == lesson}
                   key={generateRandomString(5)}
                 >
-                  {t.subject}
+                  {t.lesson}
                 </option>
               ))}
             </Select>
@@ -287,6 +301,7 @@ const ScheduleCard = ({
         direction={"column"}
       >
         <HStack>
+          <Text>#{id}</Text>
           {color ? (
             <Divider
               orientation="horizontal"

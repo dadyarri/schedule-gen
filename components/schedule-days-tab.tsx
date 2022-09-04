@@ -1,26 +1,20 @@
-import {
-  Button,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs
-} from "@chakra-ui/react";
+import {Button, Tab, TabList, TabPanel, TabPanels, Tabs} from "@chakra-ui/react";
 import {
   dayNumberToShortName,
   generateRandomString,
   getDistinctDays,
   getDistinctWeeks,
+  getNextId,
   getTimetableByDayAndWeek
 } from "../utils";
-import { ParsedSchedule, TimeTable } from "../libs/types";
+import {RawSchedule, TimeTable} from "../libs/types";
 import ScheduleCard from "./schedule-card";
 import moment from "moment";
-import { PlusSquareIcon } from "@chakra-ui/icons";
-import { ReactNode, useState } from "react";
+import {PlusSquareIcon} from "@chakra-ui/icons";
+import {ReactNode, useState} from "react";
 
 type Props = {
-  json: ParsedSchedule;
+  json: RawSchedule;
 };
 
 const ScheduleDaysTab = ({ json }: Props) => {
@@ -48,7 +42,7 @@ const ScheduleDaysTab = ({ json }: Props) => {
     return currentDate.isBetween(startDate, endDate);
   };
 
-  const addLesson = () => {
+  const addLesson = (json: RawSchedule) => {
     // const newLesson: TimeTable = {
     //   id: 100,
     //   lesson: "",
@@ -62,10 +56,19 @@ const ScheduleDaysTab = ({ json }: Props) => {
     //   dateEnd: ""
     // };
 
+    // TODO: Наладить систему типов (отдельно ParsedSchedule, отдельно TimeTable для карточки)
+    // TODO: - ParsedSchedule: пробежаться по схеме и загнать её в TS объект
+    // TODO: - TimeTable: выяснить, что нужно карточке, поправить схему
+    // TODO: - Добавить создание новой карточки
+    // TODO: - Вставка карточки в DOM
+    // TODO: - Вставка запихивание выбранных в ParsedSchedule (списки DayWeekList, TimeTableList)
+    // TODO: - Добавить удаление несозданной пары
+    // TODO: - Скрыть кнопку отмены, когда пара не создана
+
     setLessons([
       ...lessons,
       <ScheduleCard
-        id={getNextId()}
+        id={getNextId(json.timetableList)}
         key={generateRandomString(5)}
         lesson={""}
         time={""}
@@ -73,17 +76,6 @@ const ScheduleDaysTab = ({ json }: Props) => {
       />
     ]);
     // json.timetableList.push(newLesson);
-  };
-
-  const getNextId = (): number => {
-    let max = 0;
-    json.timetableList.forEach(item => {
-      if (item.id > max) {
-        max = item.id;
-      }
-    });
-
-    return max + 1;
   };
 
   return (
@@ -126,13 +118,13 @@ const ScheduleDaysTab = ({ json }: Props) => {
                           )
                         );
                       })}
-                      {lessons.map((_lesson: ReactNode) => {
-                        return _lesson;
+                      {lessons.map((lesson: ReactNode) => {
+                        return lesson;
                       })}
                       <Button
                         leftIcon={<PlusSquareIcon />}
                         colorScheme="blue"
-                        onClick={addLesson}
+                        onClick={() => addLesson(json)}
                       >
                         Создать
                       </Button>
