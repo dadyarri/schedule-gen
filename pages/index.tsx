@@ -5,6 +5,12 @@ import {
   Button,
   ButtonGroup,
   Center,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
   Flex,
   FormControl,
   Heading,
@@ -18,11 +24,13 @@ import {
   Tabs,
   Text,
   Tooltip,
+  useDisclosure,
   useToast
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import {
   AiOutlineClear,
+  AiOutlineContacts,
   AiOutlineDownload,
   AiOutlineUpload
 } from "react-icons/ai";
@@ -49,6 +57,7 @@ const Home: NextPage = () => {
   const toast = useToast();
 
   const [buttonIsLoading, setButtonIsLoading] = React.useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const uploadSchedule = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -212,20 +221,36 @@ const Home: NextPage = () => {
           <Schedule schedule={decodeData(schedule)} />
           <ButtonGroup>
             <Button
-              leftIcon={<AiOutlineClear />}
+              leftIcon={<AiOutlineContacts />}
               colorScheme={"blue"}
-              onClick={clearSchedule}
+              onClick={onOpen}
             >
-              Очистить
+              Списки
             </Button>
             <Button
               leftIcon={<AiOutlineDownload />}
-              colorScheme={"blue"}
+              colorScheme={"green"}
               onClick={downloadSchedule}
             >
               Скачать
             </Button>
+            <Button
+              leftIcon={<AiOutlineClear />}
+              colorScheme={"red"}
+              onClick={clearSchedule}
+            >
+              Очистить
+            </Button>
           </ButtonGroup>
+          <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+            <DrawerOverlay />
+            <DrawerContent>
+              <DrawerCloseButton />
+              <DrawerHeader>Редактирование списков</DrawerHeader>
+
+              <DrawerBody></DrawerBody>
+            </DrawerContent>
+          </Drawer>
         </>
       ) : (
         <Tabs variant={"soft-rounded"} mt={10} defaultIndex={1}>
