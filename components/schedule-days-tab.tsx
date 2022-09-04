@@ -50,25 +50,9 @@ const ScheduleDaysTab = ({ json }: Props) => {
   };
 
   const addLesson = (json: RawSchedule, day: number, week: number) => {
-    // const newLesson: TimeTable = {
-    //   id: 100,
-    //   lesson: "",
-    //   room: "",
-    //   type: "",
-    //   teacher: "",
-    //   time: "",
-    //   color: 0,
-    //   week: 0,
-    //   dateStart: "",
-    //   dateEnd: ""
-    // };
 
-    // TODO: Наладить систему типов (отдельно ParsedSchedule, отдельно TimeTable для карточки)
-    // TODO: - ParsedSchedule: пробежаться по схеме и загнать её в TS объект
-    // TODO: - TimeTable: выяснить, что нужно карточке, поправить схему
     // TODO: - Добавить создание новой карточки
     // TODO: - Вставка карточки в DOM
-    // TODO: - Вставка запихивание выбранных в ParsedSchedule (списки DayWeekList, TimeTableList)
     // TODO: - Добавить удаление несозданной пары
     // TODO: - Скрыть кнопку отмены, когда пара не создана
 
@@ -84,7 +68,6 @@ const ScheduleDaysTab = ({ json }: Props) => {
         week={week}
       />
     ]);
-    // json.timetableList.push(newLesson);
   };
 
   return (
