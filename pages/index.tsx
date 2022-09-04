@@ -10,6 +10,11 @@ import {
   HStack,
   Input,
   Link,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   Text,
   Tooltip,
   useToast
@@ -193,35 +198,46 @@ const Home: NextPage = () => {
           </ButtonGroup>
         </>
       ) : (
-        <Box mt={10}>
-          <form method={"post"} onSubmit={uploadSchedule}>
-            <FormControl>
-              <Flex>
-                <Input
-                  type={"file"}
-                  accept={".zip"}
-                  size={"sm"}
-                  name={"file"}
-                  id={"file-input"}
-                  variant={"flushed"}
-                  mr={10}
-                />
-                <Button
-                  leftIcon={<AiOutlineUpload />}
-                  colorScheme="blue"
-                  type={"submit"}
-                  isLoading={buttonIsLoading}
-                  loadingText="Обработка..."
-                >
-                  Открыть
-                </Button>
-              </Flex>
-            </FormControl>
-          </form>
-          <Text fontSize={"xs"} color={"gray.500"}>
-            Данные никуда не загружаются и обрабатываются в вашем браузере
-          </Text>
-        </Box>
+        <Tabs variant={"soft-rounded"} mt={10} defaultIndex={1}>
+          <TabList>
+            <Tab>Создать</Tab>
+            <Tab>Загрузить</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel></TabPanel>
+            <TabPanel>
+              <Box mt={10}>
+                <form method={"post"} onSubmit={uploadSchedule}>
+                  <FormControl>
+                    <Flex>
+                      <Input
+                        type={"file"}
+                        accept={".zip"}
+                        size={"sm"}
+                        name={"file"}
+                        id={"file-input"}
+                        variant={"flushed"}
+                        mr={10}
+                      />
+                      <Button
+                        leftIcon={<AiOutlineUpload />}
+                        colorScheme="blue"
+                        type={"submit"}
+                        isLoading={buttonIsLoading}
+                        loadingText="Обработка..."
+                      >
+                        Открыть
+                      </Button>
+                    </Flex>
+                  </FormControl>
+                </form>
+                <Text fontSize={"xs"} color={"gray.500"}>
+                  Данные никуда не загружаются и обрабатываются в вашем браузере
+                </Text>
+              </Box>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
       )}
     </Layout>
   );
