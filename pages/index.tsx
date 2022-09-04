@@ -31,7 +31,7 @@ import { useRouter } from "next/router";
 import {
   AiOutlineClear,
   AiOutlineContacts,
-  AiOutlineDownload,
+  AiOutlineDownload, AiOutlineShareAlt,
   AiOutlineUpload
 } from "react-icons/ai";
 import { IoLogoGooglePlaystore } from "react-icons/io5";
@@ -48,7 +48,7 @@ import {
 import Ajv from "ajv";
 import Schedule from "../components/schedule";
 import { AddIcon, ExternalLinkIcon } from "@chakra-ui/icons";
-import { decodeData, encodeData } from "../utils";
+import {decodeData, encodeData, generateRandomString} from "../utils";
 import { RawSchedule } from "../libs/types";
 
 const Home: NextPage = () => {
@@ -190,6 +190,50 @@ const Home: NextPage = () => {
     });
   };
 
+  const copyText = async (text: string) => {
+    await navigator.clipboard.writeText(text);
+
+    toast({
+      title: "Ссылка скопирована в буфер обмена",
+      status: "success",
+      duration: 3000,
+      isClosable: true
+    });
+  }
+
+  const shortenLinkToSchedule = async () => {
+
+    const response = await fetch("https://link.dadyarri.ru/api/shorten", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ url: window.location.href, slug: generateRandomString(5)}),
+    });
+    const json = await response.json();
+    if (response.status === 200) {
+      toast({
+        title: "Ссылка создана",
+        description: (
+          <Link href="" isExternal onClick={() => copyText(json.shortUrl)}>
+            {json.shortUrl}
+          </Link>
+        ),
+        status: "success",
+        duration: 9000,
+        isClosable: true
+      });
+    } else {
+      toast({
+        title: "Ошибка",
+        description: json.error,
+        status: "error",
+        duration: 9000,
+        isClosable: true
+      });
+    }
+  }
+
   return (
     <Layout title={"Расписание"}>
       <Heading as={"h2"} alignSelf={"center"}>
@@ -233,6 +277,13 @@ const Home: NextPage = () => {
               onClick={downloadSchedule}
             >
               Скачать
+            </Button>
+            <Button
+              leftIcon={<AiOutlineShareAlt />}
+              colorScheme={"green"}
+              onClick={shortenLinkToSchedule}
+            >
+              Поделиться
             </Button>
             <Button
               leftIcon={<AiOutlineClear />}
