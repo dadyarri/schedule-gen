@@ -37,7 +37,8 @@ const ScheduleCard = ({
   color,
   isInEditMode = false,
   day,
-  week
+  week,
+  setState,
 }: ScheduleCardProps) => {
   const router = useRouter();
 
@@ -171,6 +172,10 @@ const ScheduleCard = ({
         week: week,
         timetableId: newTimeTable.id
       });
+
+      if (setState){
+        setState([]);
+      }
 
       await router.push(
         "/?schedule=" + encodeData(JSON.stringify(json)),

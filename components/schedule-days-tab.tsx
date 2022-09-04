@@ -66,6 +66,7 @@ const ScheduleDaysTab = ({ json }: Props) => {
         isInEditMode={true}
         day={day}
         week={week}
+        setState={setLessons}
       />
     ]);
   };

@@ -1,3 +1,5 @@
+import {Dispatch, SetStateAction} from "react";
+
 export type RawSchedule = {
   attendList: RawAttendance[];
   dateList: RawDate[];
@@ -139,6 +141,7 @@ export type ScheduleCardProps = {
   dateEnd?: string;
   color?: number;
   isInEditMode?: boolean;
+  setState?: Dispatch<SetStateAction<JSX.Element[]>>;
 };
 
 export type DayWeekItem = {
