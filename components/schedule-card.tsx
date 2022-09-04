@@ -117,6 +117,11 @@ const ScheduleCard = ({
       undefined,
       { shallow: true }
     );
+
+    if (setState){
+      setState([]);
+    }
+
     setCardState(false);
     setDeleteButtonIsLoading(false);
   };
