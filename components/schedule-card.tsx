@@ -323,7 +323,6 @@ const ScheduleCard = ({
         direction={"column"}
       >
         <HStack>
-          <Text>#{id}</Text>
           {color ? (
             <Divider
               orientation="horizontal"
