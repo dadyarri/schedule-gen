@@ -38,7 +38,7 @@ const ScheduleCard = ({
   isInEditMode = false,
   day,
   week,
-  setState,
+  setState
 }: ScheduleCardProps) => {
   const router = useRouter();
 
@@ -174,7 +174,7 @@ const ScheduleCard = ({
         timetableId: newTimeTable.id
       });
 
-      if (setState){
+      if (setState) {
         setState([]);
       }
 
@@ -190,7 +190,7 @@ const ScheduleCard = ({
   };
 
   const onDiscardButtonClick = () => {
-    if (setState){
+    if (setState) {
       setState([]);
     }
     setCardState(false);
@@ -292,16 +292,18 @@ const ScheduleCard = ({
           >
             Сохранить
           </Button>
-          {getTimeTableById(json.timetableList, id) && <Button
-            leftIcon={<DeleteIcon />}
-            colorScheme={"red"}
-            m={2}
-            onClick={onDeleteButtonClick}
-            isLoading={deleteButtonIsLoading}
-            loadingText={"Удаление..."}
-          >
-            Удалить
-          </Button>}
+          {getTimeTableById(json.timetableList, id) && (
+            <Button
+              leftIcon={<DeleteIcon />}
+              colorScheme={"red"}
+              m={2}
+              onClick={onDeleteButtonClick}
+              isLoading={deleteButtonIsLoading}
+              loadingText={"Удаление..."}
+            >
+              Удалить
+            </Button>
+          )}
           <IconButton
             aria-label="Reset changes"
             icon={<CloseIcon />}

@@ -50,7 +50,6 @@ const ScheduleDaysTab = ({ json }: Props) => {
   };
 
   const addLesson = (json: RawSchedule, day: number, week: number) => {
-
     setLessons([
       ...lessons,
       <ScheduleCard
