@@ -1,4 +1,11 @@
-import {Button, Tab, TabList, TabPanel, TabPanels, Tabs} from "@chakra-ui/react";
+import {
+  Button,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs
+} from "@chakra-ui/react";
 import {
   dayNumberToShortName,
   generateRandomString,
@@ -7,11 +14,11 @@ import {
   getNextId,
   getTimetableByDayAndWeek
 } from "../utils";
-import {RawSchedule, ScheduleCardProps} from "../libs/types";
+import { RawSchedule, ScheduleCardProps } from "../libs/types";
 import ScheduleCard from "./schedule-card";
 import moment from "moment";
-import {PlusSquareIcon} from "@chakra-ui/icons";
-import {ReactNode, useState} from "react";
+import { PlusSquareIcon } from "@chakra-ui/icons";
+import { ReactNode, useState } from "react";
 
 type Props = {
   json: RawSchedule;
@@ -24,7 +31,7 @@ const ScheduleDaysTab = ({ json }: Props) => {
   const [lessons, setLessons] = useState([] as JSX.Element[]);
 
   const getCurrentWeek = (): number => {
-    return moment().week() % 2;
+    return moment().add(13, "days").week() % 2;
   };
 
   const ifCurrentDateIsInRange = (
@@ -103,11 +110,8 @@ const ScheduleDaysTab = ({ json }: Props) => {
               </TabList>
               <TabPanels>
                 {weeks.map((week: number) => {
-                  const timetable: ScheduleCardProps[] = getTimetableByDayAndWeek(
-                    json,
-                    day,
-                    week
-                  );
+                  const timetable: ScheduleCardProps[] =
+                    getTimetableByDayAndWeek(json, day, week);
                   return (
                     <TabPanel key={generateRandomString(5)}>
                       {timetable.map(t => {
