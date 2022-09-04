@@ -51,11 +51,6 @@ const ScheduleDaysTab = ({ json }: Props) => {
 
   const addLesson = (json: RawSchedule, day: number, week: number) => {
 
-    // TODO: - Добавить создание новой карточки
-    // TODO: - Вставка карточки в DOM
-    // TODO: - Добавить удаление несозданной пары
-    // TODO: - Скрыть кнопку отмены, когда пара не создана
-
     setLessons([
       ...lessons,
       <ScheduleCard
