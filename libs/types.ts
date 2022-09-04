@@ -17,36 +17,36 @@ export type RawSchedule = {
   typeList: BasicListItem[];
   version: number;
   weekendList: RawWeekend[];
-}
+};
 
 export type RawAttendance = {
   id: number;
   date: string;
   lessonId: number;
   timeId: number;
-}
+};
 
 export type RawDate = {
   id: number;
   date: string;
   timetableId: number;
-}
+};
 
 export type RawDayWeek = {
   id: number;
   day: number;
   timetableId: number;
   week: number;
-}
+};
 
 export type BasicListItem = {
   id: number;
   name: string;
-}
+};
 
 export type RawLesson = BasicListItem & {
   color: number;
-}
+};
 
 export type RawExam = {
   id: number;
@@ -58,12 +58,12 @@ export type RawExam = {
   teacherId?: number;
   roomId?: number;
   gradeId?: number;
-}
+};
 
 export type RawGrade = {
   id: number;
   value: number;
-}
+};
 
 export type RawGradeStatistic = {
   id: number;
@@ -72,20 +72,20 @@ export type RawGradeStatistic = {
   weight: number;
   gradeId: number;
   lessonId: number;
-}
+};
 
 export type RawTeacher = BasicListItem & {
   phone?: string;
   email?: string;
   description?: string;
-}
+};
 
 export type RawTime = {
   id: number;
   number: number;
   start: string;
   end: string;
-}
+};
 
 export type RawHomework = BasicListItem & {
   date?: string;
@@ -93,13 +93,13 @@ export type RawHomework = BasicListItem & {
   description?: string;
   typeId?: number;
   lessonId: number;
-}
+};
 
 export type RawImage = {
   id: number;
   homeworkId: number;
   uri: string;
-}
+};
 
 export type RawNote = {
   id: number;
@@ -107,7 +107,7 @@ export type RawNote = {
   date: string;
   timeId: number;
   lessonId: number;
-}
+};
 
 export type RawTimeTable = {
   id: number;
@@ -119,12 +119,12 @@ export type RawTimeTable = {
   timeId: number;
   dateStart?: string;
   dateEnd?: string;
-}
+};
 
 export type RawWeekend = BasicListItem & {
   dateStart: string;
   dateEnd: string;
-}
+};
 
 export type ScheduleCardProps = {
   id: number;

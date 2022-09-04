@@ -1,7 +1,18 @@
-import {Box, Button, Divider, Flex, FormControl, FormLabel, HStack, IconButton, Select, Text} from "@chakra-ui/react";
-import {RawSchedule, RawTimeTable, ScheduleCardProps} from "../libs/types";
-import React, {useState} from "react";
-import {CheckIcon, CloseIcon, DeleteIcon, EditIcon} from "@chakra-ui/icons";
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  FormControl,
+  FormLabel,
+  HStack,
+  IconButton,
+  Select,
+  Text
+} from "@chakra-ui/react";
+import { RawSchedule, RawTimeTable, ScheduleCardProps } from "../libs/types";
+import React, { useState } from "react";
+import { CheckIcon, CloseIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import {
   decodeData,
   encodeData,
@@ -14,7 +25,7 @@ import {
   getNextId,
   getTimeTableById
 } from "../utils";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 const ScheduleCard = ({
   id,
@@ -26,7 +37,7 @@ const ScheduleCard = ({
   color,
   isInEditMode = false,
   day,
-  week,
+  week
 }: ScheduleCardProps) => {
   const router = useRouter();
 

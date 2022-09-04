@@ -4,7 +4,9 @@ import {
   ParsedRoom,
   ParsedTeacher,
   ParsedTime,
-  ParsedType, RawDayWeek, RawTimeTable,
+  ParsedType,
+  RawDayWeek,
+  RawTimeTable,
   ScheduleCardProps,
   TimetableItem
 } from "./libs/types";
@@ -278,7 +280,10 @@ const decodeData = (str: string): string => {
   return JSONCrush.uncrush(str);
 };
 
-const getTimeTableById = (schedule: RawTimeTable[], timetableId: number): RawTimeTable | undefined => {
+const getTimeTableById = (
+  schedule: RawTimeTable[],
+  timetableId: number
+): RawTimeTable | undefined => {
   for (let i = 0; i < schedule.length; i++) {
     if (schedule[i].id === timetableId) {
       return schedule[i];
