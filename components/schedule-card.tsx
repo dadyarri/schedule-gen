@@ -1,5 +1,5 @@
 import {Box, Button, Divider, Flex, FormControl, FormLabel, HStack, IconButton, Select, Text} from "@chakra-ui/react";
-import {RawSchedule, RawTimeTable, TimeTable} from "../libs/types";
+import {RawSchedule, RawTimeTable, ScheduleCardProps} from "../libs/types";
 import React, {useState} from "react";
 import {CheckIcon, CloseIcon, DeleteIcon, EditIcon} from "@chakra-ui/icons";
 import {
@@ -24,8 +24,10 @@ const ScheduleCard = ({
   teacher,
   time,
   color,
-  isInEditMode = false
-}: TimeTable) => {
+  isInEditMode = false,
+  day,
+  week,
+}: ScheduleCardProps) => {
   const router = useRouter();
 
   const [cardState, setCardState] = useState(isInEditMode);
@@ -154,8 +156,8 @@ const ScheduleCard = ({
       json.timetableList.push(newTimeTable);
       json.dayWeekList.push({
         id: getNextId(json.dayWeekList),
-        day: 0,
-        week: 0,
+        day: day,
+        week: week,
         timetableId: newTimeTable.id
       });
 

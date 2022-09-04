@@ -5,7 +5,7 @@ import {
   ParsedTeacher,
   ParsedTime,
   ParsedType, RawDayWeek, RawTimeTable,
-  TimeTable,
+  ScheduleCardProps,
   TimetableItem
 } from "./libs/types";
 import jsonata from "jsonata";
@@ -232,16 +232,16 @@ const getTimetableByDayAndWeek = (
   schedule: object,
   day: number,
   week: number
-): TimeTable[] => {
+): ScheduleCardProps[] => {
   const lessonIds = jsonata(
     `dayWeekList[day=${day}][week=${week}].timetableId`
   ).evaluate(schedule); // could be undefined
 
-  const timetable: TimeTable[] = [];
+  const timetable: ScheduleCardProps[] = [];
 
   if (lessonIds != undefined) {
     lessonIds.map((id: number) => {
-      timetable.push(buildTimetable(schedule, id, week));
+      timetable.push(buildTimetable(schedule, id, day, week));
     });
   }
 
@@ -251,9 +251,11 @@ const getTimetableByDayAndWeek = (
 const buildTimetable = (
   schedule: object,
   timetableId: number,
+  day: number,
   week: number
-): TimeTable => {
+): ScheduleCardProps => {
   return {
+    day: day,
     id: timetableId,
     lesson: getLessonName(schedule, timetableId),
     room: getRoomName(schedule, timetableId),

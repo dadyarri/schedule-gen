@@ -126,14 +126,15 @@ export type RawWeekend = BasicListItem & {
   dateEnd: string;
 }
 
-export type TimeTable = {
+export type ScheduleCardProps = {
   id: number;
   lesson: string;
   room?: string;
   type?: string;
   teacher?: string;
   time: string;
-  week?: number;
+  week: number;
+  day: number;
   dateStart?: string;
   dateEnd?: string;
   color?: number;
@@ -153,7 +154,7 @@ export type TimetableItem = {
 };
 
 export type ParsedSchedule = {
-  timetableList: TimeTable[];
+  timetableList: ScheduleCardProps[];
   dayWeekList: DayWeekItem[];
 };
 

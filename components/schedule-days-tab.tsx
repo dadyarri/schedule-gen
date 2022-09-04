@@ -7,7 +7,7 @@ import {
   getNextId,
   getTimetableByDayAndWeek
 } from "../utils";
-import {RawSchedule, TimeTable} from "../libs/types";
+import {RawSchedule, ScheduleCardProps} from "../libs/types";
 import ScheduleCard from "./schedule-card";
 import moment from "moment";
 import {PlusSquareIcon} from "@chakra-ui/icons";
@@ -42,7 +42,7 @@ const ScheduleDaysTab = ({ json }: Props) => {
     return currentDate.isBetween(startDate, endDate);
   };
 
-  const addLesson = (json: RawSchedule) => {
+  const addLesson = (json: RawSchedule, day: number, week: number) => {
     // const newLesson: TimeTable = {
     //   id: 100,
     //   lesson: "",
@@ -73,6 +73,8 @@ const ScheduleDaysTab = ({ json }: Props) => {
         lesson={""}
         time={""}
         isInEditMode={true}
+        day={day}
+        week={week}
       />
     ]);
     // json.timetableList.push(newLesson);
@@ -101,7 +103,7 @@ const ScheduleDaysTab = ({ json }: Props) => {
               </TabList>
               <TabPanels>
                 {weeks.map((week: number) => {
-                  const timetable: TimeTable[] = getTimetableByDayAndWeek(
+                  const timetable: ScheduleCardProps[] = getTimetableByDayAndWeek(
                     json,
                     day,
                     week
@@ -124,7 +126,7 @@ const ScheduleDaysTab = ({ json }: Props) => {
                       <Button
                         leftIcon={<PlusSquareIcon />}
                         colorScheme="blue"
-                        onClick={() => addLesson(json)}
+                        onClick={() => addLesson(json, day, week)}
                       >
                         Создать
                       </Button>
