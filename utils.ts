@@ -1,9 +1,18 @@
-import {DayWeekItem, TimeTable, TimetableItem} from "./libs/types";
+import {
+  DayWeekItem,
+  ParsedLesson,
+  ParsedRoom,
+  ParsedTeacher,
+  ParsedTime,
+  ParsedType,
+  TimeTable,
+  TimetableItem
+} from "./libs/types";
 import jsonata from "jsonata";
 import _ from "underscore";
 import JSONCrush from "jsoncrush";
 
-const dayNumberToShortName = (day: number) => {
+const dayNumberToShortName = (day: number): string => {
   switch (day) {
     case 1:
       return "ВС";
@@ -24,7 +33,7 @@ const dayNumberToShortName = (day: number) => {
   }
 };
 
-const getDistinctDays = (dayWeekItems: DayWeekItem[]) => {
+const getDistinctDays = (dayWeekItems: DayWeekItem[]): number[] => {
   const days: number[] = [];
   dayWeekItems.forEach((item: DayWeekItem) => {
     if (!days.includes(item.day)) {
@@ -35,7 +44,7 @@ const getDistinctDays = (dayWeekItems: DayWeekItem[]) => {
   return days.sort();
 };
 
-const getDistinctWeeks = (dayWeekItems: TimetableItem[]) => {
+const getDistinctWeeks = (dayWeekItems: TimetableItem[]): number[] => {
   const weeks: number[] = [];
   dayWeekItems.forEach((item: TimetableItem) => {
     if (!weeks.includes(item.week)) {
@@ -46,84 +55,72 @@ const getDistinctWeeks = (dayWeekItems: TimetableItem[]) => {
   return weeks.sort();
 };
 
-const getLessonName = (
-  schedule: object,
-  timetableId: number
-): { lesson: string } => {
+const getLessonName = (schedule: object, timetableId: number): string => {
   let lessonName;
 
   try {
     lessonName = jsonata(
-      `timetableList@$T.lessonList@$L[$T.lessonId = $L.id][$T.id=${timetableId}]{"lesson": $L.name}`
+      `timetableList@$T.lessonList@$L[$T.lessonId = $L.id][$T.id=${timetableId}].$L.name`
     ).evaluate(schedule);
   } catch (TypeError) {
-    lessonName = { lesson: "" };
+    lessonName = "";
   }
   return lessonName;
 };
 
-const getRoomName = (
-  schedule: object,
-  timetableId: number
-): { room: string } => {
+const getRoomName = (schedule: object, timetableId: number): string => {
   let roomName;
 
   try {
     roomName = jsonata(
-      `timetableList@$T.roomList@$R[$T.roomId = $R.id][$T.id=${timetableId}]{"room": $R.name}`
+      `timetableList@$T.roomList@$R[$T.roomId = $R.id][$T.id=${timetableId}].$R.name`
     ).evaluate(schedule);
   } catch (TypeError) {
-    roomName = { room: "" };
+    roomName = "";
   }
   return roomName;
 };
 
-const getTypeName = (
-  schedule: object,
-  timetableId: number
-): { type: string } => {
+const getTypeName = (schedule: object, timetableId: number): string => {
   let typeName;
 
   try {
     typeName = jsonata(
-      `timetableList@$T.typeList@$TP[$T.typeId = $TP.id][$T.id=${timetableId}]{"type": $TP.name}`
+      `timetableList@$T.typeList@$TP[$T.typeId = $TP.id][$T.id=${timetableId}].$TP.name`
     ).evaluate(schedule);
   } catch (TypeError) {
-    typeName = { type: "" };
+    typeName = "";
   }
   return typeName;
 };
 
-const getTeacherName = (
-  schedule: object,
-  timetableId: number
-): { teacher: string } => {
+const getTeacherName = (schedule: object, timetableId: number): string => {
   let teacherName;
 
   try {
     teacherName = jsonata(
-      `timetableList@$T.teacherList@$TC[$T.teacherId = $TC.id][$T.id=${timetableId}]{"teacher": $TC.name}`
+      `timetableList@$T.teacherList@$TC[$T.teacherId = $TC.id][$T.id=${timetableId}].$TC.name`
     ).evaluate(schedule);
   } catch (TypeError) {
-    teacherName = { teacher: "" };
+    teacherName = "";
   }
   return teacherName;
 };
 
-const getTime = (schedule: object, timetableId: number): { time: string } => {
+const getTime = (schedule: object, timetableId: number): string => {
   let time;
 
   try {
     time = jsonata(
-      `timetableList@$T.timeList@$TM[$T.timeId = $TM.id][$T.id=${timetableId}]{"time": $TM.start & " - " & $TM.end}`
+      `timetableList@$T.timeList@$TM[$T.timeId = $TM.id][$T.id=${timetableId}].($TM.start & " - " & $TM.end)`
     ).evaluate(schedule);
   } catch (TypeError) {
-    time = { time: "" };
+    time = "";
   }
   return time;
 };
 
-const getListOfTime = (schedule: object): { time: string; id: number }[] => {
+const getListOfTime = (schedule: object): ParsedTime[] => {
   let times;
 
   try {
@@ -137,13 +134,11 @@ const getListOfTime = (schedule: object): { time: string; id: number }[] => {
   return times;
 };
 
-const getListOfSubjects = (
-  schedule: object
-): { subject: string; id: number }[] => {
+const getListOfLessons = (schedule: object): ParsedLesson[] => {
   let subjects;
 
   try {
-    subjects = jsonata(`lessonList.{"subject": name, "id": id}`).evaluate(
+    subjects = jsonata(`lessonList.{"lesson": name, "id": id}`).evaluate(
       schedule
     );
   } catch (TypeError) {
@@ -153,7 +148,7 @@ const getListOfSubjects = (
   return subjects;
 };
 
-const getListOfTypes = (schedule: object): { type: string; id: number }[] => {
+const getListOfTypes = (schedule: object): ParsedType[] => {
   let types;
 
   try {
@@ -165,9 +160,7 @@ const getListOfTypes = (schedule: object): { type: string; id: number }[] => {
   return types;
 };
 
-const getListOfTeachers = (
-  schedule: object
-): { teacher: string; id: number }[] => {
+const getListOfTeachers = (schedule: object): ParsedTeacher[] => {
   let teachers;
 
   try {
@@ -181,7 +174,7 @@ const getListOfTeachers = (
   return teachers;
 };
 
-const getListOfRooms = (schedule: object): { room: string; id: number }[] => {
+const getListOfRooms = (schedule: object): ParsedRoom[] => {
   let rooms;
 
   try {
@@ -193,47 +186,44 @@ const getListOfRooms = (schedule: object): { room: string; id: number }[] => {
   return rooms;
 };
 
-const getDateStart = (
-  schedule: object,
-  timetableId: number
-): { dateStart: string } => {
+const getDateStart = (schedule: object, timetableId: number): string => {
   let dateStart;
 
   try {
-    dateStart = jsonata(
-      `timetableList[id=${timetableId}]{"dateStart": dateStart}`
-    ).evaluate(schedule);
+    dateStart = jsonata(`timetableList[id=${timetableId}].dateStart`).evaluate(
+      schedule
+    );
   } catch (TypeError) {
-    dateStart = { dateStart: "" };
+    dateStart = "";
   }
   return dateStart;
 };
 
-const getDateEnd = (
-  schedule: object,
-  timetableId: number
-): { dateEnd: string } => {
+const getDateEnd = (schedule: object, timetableId: number): string => {
   let dateEnd;
 
   try {
-    dateEnd = jsonata(
-      `timetableList[id=${timetableId}]{"dateEnd": dateEnd}`
-    ).evaluate(schedule);
+    dateEnd = jsonata(`timetableList[id=${timetableId}].dateEnd`).evaluate(
+      schedule
+    );
   } catch (TypeError) {
-    dateEnd = { dateEnd: "" };
+    dateEnd = "";
   }
   return dateEnd;
 };
 
-const getColor = (schedule: object, timetableId: number): { color: number } => {
+const getColor = (
+  schedule: object,
+  timetableId: number
+): number | undefined => {
   let color;
 
   try {
     color = jsonata(
-      `timetableList@$T.lessonList@$L[$T.lessonId = $L.id][$T.id=${timetableId}]{"color": $L.color}`
+      `timetableList@$T.lessonList@$L[$T.lessonId = $L.id][$T.id=${timetableId}].$L.color`
     ).evaluate(schedule);
   } catch (TypeError) {
-    color = { color: "" };
+    color = undefined;
   }
   return color;
 };
@@ -244,14 +234,14 @@ const getTimetableByDayAndWeek = (
   week: number
 ): TimeTable[] => {
   const lessonIds = jsonata(
-    `dayWeekList[day=${day}][week=${week}].[timetableId]`
+    `dayWeekList[day=${day}][week=${week}].timetableId`
   ).evaluate(schedule); // could be undefined
 
   const timetable: TimeTable[] = [];
 
   if (lessonIds != undefined) {
-    lessonIds.map((id: number[]) => {
-      timetable.push(buildTimetable(schedule, id[0], week));
+    lessonIds.map((id: number) => {
+      timetable.push(buildTimetable(schedule, id, week));
     });
   }
 
@@ -265,48 +255,34 @@ const buildTimetable = (
 ): TimeTable => {
   return {
     id: timetableId,
-    lesson: getLessonName(schedule, timetableId).lesson,
-    room: getRoomName(schedule, timetableId).room,
-    type: getTypeName(schedule, timetableId).type,
-    teacher: getTeacherName(schedule, timetableId).teacher,
-    time: getTime(schedule, timetableId).time,
-    dateStart: getDateStart(schedule, timetableId).dateStart,
-    dateEnd: getDateEnd(schedule, timetableId).dateEnd,
-    color: getColor(schedule, timetableId).color,
+    lesson: getLessonName(schedule, timetableId),
+    room: getRoomName(schedule, timetableId),
+    type: getTypeName(schedule, timetableId),
+    teacher: getTeacherName(schedule, timetableId),
+    time: getTime(schedule, timetableId),
+    dateStart: getDateStart(schedule, timetableId),
+    dateEnd: getDateEnd(schedule, timetableId),
+    color: getColor(schedule, timetableId),
     week: week
   };
 };
 
-function encodeData(str: string) {
-  const crushed = JSONCrush.crush(str)
+const encodeData = (str: string): string => {
+  const crushed = JSONCrush.crush(str);
   return encodeURIComponent(crushed);
-}
+};
 
-function decodeData(str: string) {
+const decodeData = (str: string): string => {
   return JSONCrush.uncrush(str);
-}
+};
 
-const getTimeTableById = (
-  schedule: {
-    timetableList: [
-      {
-        roomId: number;
-        teacherId: number;
-        typeId: number;
-        lessonId: number;
-        timeId: number;
-        id: number;
-      }
-    ];
-  },
-  timetableId: number
-) => {
-  for (let i = 0; i < schedule.timetableList.length; i++) {
-    if (schedule.timetableList[i].id === timetableId) {
-      return schedule.timetableList[i];
+const getTimeTableById = (schedule: TimeTable[], timetableId: number): TimeTable | undefined => {
+  for (let i = 0; i < schedule.length; i++) {
+    if (schedule[i].id === timetableId) {
+      return schedule[i];
     }
   }
-  return null;
+  return undefined;
 };
 
 const generateRandomString = (length: number): string => {
@@ -320,6 +296,17 @@ const generateRandomString = (length: number): string => {
   return result;
 };
 
+const getNextId = (json: TimeTable[] | DayWeekItem[]): number => {
+  let max = 0;
+  json.forEach(item => {
+    if (item.id > max) {
+      max = item.id;
+    }
+  });
+
+  return max + 1;
+};
+
 export {
   dayNumberToShortName,
   getDistinctDays,
@@ -327,12 +314,13 @@ export {
   buildTimetable,
   getTimetableByDayAndWeek,
   getListOfTime,
-  getListOfSubjects,
+  getListOfLessons,
   getListOfTypes,
   getListOfTeachers,
   getListOfRooms,
   encodeData,
   decodeData,
   getTimeTableById,
-  generateRandomString
+  generateRandomString,
+  getNextId
 };

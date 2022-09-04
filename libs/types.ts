@@ -28,3 +28,28 @@ export type ParsedSchedule = {
   timetableList: TimeTable[];
   dayWeekList: DayWeekItem[];
 };
+
+export type ParsedTime = {
+  id: number;
+  time: string;
+};
+
+export type ParsedLesson = {
+  id: number;
+  lesson: string;
+};
+
+export type ParsedRoom = {
+  id: number;
+  room: string;
+};
+
+export type ParsedType = {
+  id: number;
+  type: string;
+};
+
+export type ParsedTeacher = {
+  id: number;
+  teacher: string;
+};
