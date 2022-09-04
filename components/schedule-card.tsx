@@ -110,8 +110,6 @@ const ScheduleCard = ({
   const onSaveButtonClick = async () => {
     setSaveButtonIsLoading(true);
 
-    const newJson = Object.assign({}, json);
-
     const timeSelect = document.getElementById(
       "timeSelect"
     ) as HTMLSelectElement;
@@ -128,7 +126,7 @@ const ScheduleCard = ({
       "roomSelect"
     ) as HTMLSelectElement;
 
-    const tt = getTimeTableById(newJson.timetableList, id);
+    const tt = getTimeTableById(json.timetableList, id);
 
     if (tt) {
       tt.timeId = parseInt(timeSelect.value);
@@ -138,7 +136,7 @@ const ScheduleCard = ({
       tt.roomId = parseInt(roomSelect.value);
 
       await router.push(
-        "/?schedule=" + encodeData(JSON.stringify(newJson)),
+        "/?schedule=" + encodeData(JSON.stringify(json)),
         undefined,
         { shallow: true }
       );
@@ -153,8 +151,8 @@ const ScheduleCard = ({
         roomId: parseInt(roomSelect.value)
       };
 
-      newJson.timetableList.push(newTimeTable);
-      newJson.dayWeekList.push({
+      json.timetableList.push(newTimeTable);
+      json.dayWeekList.push({
         id: getNextId(json.dayWeekList),
         day: 0,
         week: 0,
@@ -162,7 +160,7 @@ const ScheduleCard = ({
       });
 
       await router.push(
-        "/?schedule=" + encodeData(JSON.stringify(newJson)),
+        "/?schedule=" + encodeData(JSON.stringify(json)),
         undefined,
         { shallow: true }
       );
