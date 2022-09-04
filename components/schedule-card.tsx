@@ -118,10 +118,6 @@ const ScheduleCard = ({
       { shallow: true }
     );
 
-    if (setState){
-      setState([]);
-    }
-
     setCardState(false);
     setDeleteButtonIsLoading(false);
   };
@@ -194,6 +190,9 @@ const ScheduleCard = ({
   };
 
   const onDiscardButtonClick = () => {
+    if (setState){
+      setState([]);
+    }
     setCardState(false);
   };
 
@@ -293,7 +292,7 @@ const ScheduleCard = ({
           >
             Сохранить
           </Button>
-          <Button
+          {getTimeTableById(json.timetableList, id) && <Button
             leftIcon={<DeleteIcon />}
             colorScheme={"red"}
             m={2}
@@ -302,7 +301,7 @@ const ScheduleCard = ({
             loadingText={"Удаление..."}
           >
             Удалить
-          </Button>
+          </Button>}
           <IconButton
             aria-label="Reset changes"
             icon={<CloseIcon />}
