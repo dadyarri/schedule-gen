@@ -111,14 +111,14 @@ export type RawNote = {
 
 export type RawTimeTable = {
   id: number;
-  color: number;
+  color?: number;
   lessonId: number;
   teacherId: number;
   roomId: number;
   typeId: number;
   timeId: number;
-  dateStart: string;
-  dateEnd: string;
+  dateStart?: string;
+  dateEnd?: string;
 }
 
 export type RawWeekend = BasicListItem & {
