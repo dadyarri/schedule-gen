@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   ButtonGroup,
+  Center,
   Flex,
   FormControl,
   Heading,
@@ -38,8 +39,9 @@ import {
 } from "@zip.js/zip.js";
 import Ajv from "ajv";
 import Schedule from "../components/schedule";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { AddIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 import { decodeData, encodeData } from "../utils";
+import { RawSchedule } from "../libs/types";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -151,6 +153,34 @@ const Home: NextPage = () => {
     }
   };
 
+  const createEmptySchedule = async () => {
+    const json: RawSchedule = {
+      attendList: [],
+      dateList: [],
+      dayWeekList: [],
+      examGroupList: [],
+      examList: [],
+      gradeList: [],
+      gradeStatisticList: [],
+      homeWorkList: [],
+      imageList: [],
+      lessonList: [],
+      noteList: [],
+      roomList: [],
+      teacherList: [],
+      timeList: [],
+      timetableList: [],
+      typeList: [],
+      version: 3,
+      weekendList: []
+    };
+
+    const encodedJson = encodeData(JSON.stringify(json));
+    await router.push(`/?schedule=${encodedJson}`, undefined, {
+      shallow: true
+    });
+  };
+
   return (
     <Layout title={"Расписание"}>
       <Heading as={"h2"} alignSelf={"center"}>
@@ -204,7 +234,18 @@ const Home: NextPage = () => {
             <Tab>Загрузить</Tab>
           </TabList>
           <TabPanels>
-            <TabPanel></TabPanel>
+            <TabPanel>
+              <Center>
+                <Button
+                  colorScheme="blue"
+                  size="lg"
+                  leftIcon={<AddIcon />}
+                  onClick={createEmptySchedule}
+                >
+                  Пустое расписание
+                </Button>
+              </Center>
+            </TabPanel>
             <TabPanel>
               <Box mt={10}>
                 <form method={"post"} onSubmit={uploadSchedule}>
